@@ -1,0 +1,95 @@
+html{
+  position:relative; 
+  min-height: 100%;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+}
+
+header {
+	left: 0;
+	background: rgb(0,150,255);
+	border-bottom: 3px solid rgb(0,100,150);
+	z-index: 2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+}
+
+header b {
+	font-size: 2.5em;
+	color: rgb(255,255,255);
+}
+
+main {
+	margin-top: 100px;
+	margin-bottom:100px;
+}
+
+#intro {
+	padding-bottom: 30px;
+	border-bottom: 1px solid black;
+}
+
+#box {
+	background: rgb(100, 150, 255);
+	padding: 20px;
+	margin-left: 25%;
+	margin-right: 25%;
+	height: 600px;
+	border-radius: 50px;
+	border: 10px double white;
+	text-align: center;
+}
+
+#box button {
+	margin: 30px;
+	padding: 5px;
+	width: 300px;
+	height: 100px;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	font-size: 1.5em;
+}
+
+#box button:hover {
+	background: white;
+}
+
+footer {
+	position: absolute;
+    bottom: 0;
+	width: 100%;
+	border-top: 3px solid rgb(0,100,150);
+	background: rgb(0,150,255);
+	height: 70px;
+	text-align: center;
+}
+
+@media all and (max-width: 1280px)
+{	
+	#box {
+		margin-left: 20%;
+		margin-right: 20%;
+	}
+	
+	#box button {
+		width: 200px;
+		height: 50px;
+		font-size: 1em;
+	}
+}
+
+@media all and (max-width: 800px)
+{	
+	#box {
+		margin-left: 15%;
+		margin-right: 15%;
+	}
+}
