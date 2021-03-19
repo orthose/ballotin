@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Ballotin</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/button.js"></script>
   <link href='style.css' rel='stylesheet'/>
 </head>
 <body>
@@ -16,11 +17,11 @@
 			<p id='intro'> Bonjour, bienvenue sur Ballotin un site de vote crypté en ligne ! </p>
 			
 			<div id='buttons'>
-				<button onClick='vote()'> Voter pour un scrutin </button>
-				<button onClick='create()'> Créer un scrutin </button>
-				<button onClick='manage()'> Manager un scrutin </button>
+				<button onClick='authenticate_button(); vote_button()'> Voter pour un scrutin </button>
+				<button onClick='authenticate_button(); create_button()'> Créer un scrutin </button>
+				<button onClick='authenticate_button(); manage_button()'> Manager un scrutin </button>
 			</div>
-		<div>
+		</div>
 	</main>
 	
 	<footer>
