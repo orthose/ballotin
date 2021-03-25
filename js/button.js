@@ -6,35 +6,35 @@
 ***********************************/
 
 function authenticate_button() {
-	$("#box").html("E-mail de l'électeur :")
-	$("#box").append($("<br>"))
+	$("#boxMain").html("E-mail de l'électeur :")
+	$("#boxMain").append($("<br>"))
 	const $email = $("<input>").attr("type", "text")
-	$("#box").append($email)
-	$("#box").append($("<br>"))
+	$("#boxMain").append($email)
+	$("#boxMain").append($("<br>"))
 
-	$("#box").append("Mot de passe :")
-	$("#box").append($("<br>"))
+	$("#boxMain").append("Mot de passe :")
+	$("#boxMain").append($("<br>"))
 	const $passwd = $("<input>").attr("type", "text")
-	$("#box").append($passwd)
+	$("#boxMain").append($passwd)
 	let $send_passwd = $("<button>").attr("onClick", "???")
 	$send_passwd.append("(r)Envoyer par e-mail")
-	$("#box").append($send_passwd)
-	$("#box").append("<br>")
+	$("#boxMain").append($send_passwd)
+	$("#boxMain").append("<br>")
 }
 
 function template_vote_button(txt_b1, txt_b2) {
-	$("#box").append("Code de scrutin :")
-	$("#box").append("<br>")
+	$("#boxMain").append("Code de scrutin :")
+	$("#boxMain").append("<br>")
 	const $vote = $("<input>").attr("type", "text")
-	$("#box").append($vote)
+	$("#boxMain").append($vote)
 	let $search_vote = $("<button>").attr("onClick", "???")
 	$search_vote.append(txt_b1)
-	$("#box").append($search_vote)
-	$("#box").append("<br>")
+	$("#boxMain").append($search_vote)
+	$("#boxMain").append("<br>")
 
 	let $apply = $("<button>").attr("onClick", "???")
 	$apply.append(txt_b2)
-	$("#box").append($apply)
+	$("#boxMain").append($apply)
 }
 
 function vote_button() {
@@ -50,7 +50,7 @@ function manage_button() {
 }
 
 function create_button() {
-	let $apply = $("<button>").attr("onClick", "???")
+	let $apply = $("<button>").attr("onClick", "createBallotPage()")
 	$apply.append("Créer un scrutin")
-	$("#box").append($apply)
+	$("#boxMain").append($apply)
 }

@@ -1,0 +1,116 @@
+html {
+	position: relative; 
+	min-height: 100%;
+}
+
+html, body {
+	margin:0;
+	padding:0;
+}
+
+/*---------- Header ----------*/
+
+body > header {
+	background: rgb(0,150,255);
+	border-bottom: 3px solid rgb(0,100,150);
+	z-index: 2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+}
+
+body > header h1 {
+	font-size: 2.5em;
+	margin: 0;
+	padding: 0;
+}
+
+body > header h1 a {
+	color: rgb(255,255,255);
+	text-decoration: none;
+}
+
+
+/*---------- Main ----------*/
+
+body > main {
+	width: 100%;
+	margin-top: 100px;
+	margin-bottom:100px;
+}
+
+/*---------- Box ----------*/
+
+#box {
+	background: rgb(100, 150, 255);
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 600px;
+	border-color: rgb(100, 150, 255);
+	border-radius: 50px;
+	border: 10px double white;
+	text-align: center;
+}
+
+#box > * {
+	padding: 20px;
+}
+
+#boxHeader {
+	display: flex;
+	justify-content: space-around;
+	background: rgb(80, 120, 255);
+	border-radius: 40px 40px 0 0;
+	height: 10%;
+}
+
+#boxHeader img {
+	width: 50px;
+	height: 50px;
+}
+
+#boxMain {
+	background: rgb(100, 150, 255);
+	height: 80%;
+}
+
+#boxFooter {
+	background: rgb(100, 150, 255);
+	border-radius: 0 0 50px 50px;
+	height: 10%;
+}
+
+/*---------- Footer ----------*/
+
+body > footer {
+	position: absolute;
+    bottom: 0;
+	left: 0;
+	width: 100%;
+	border-top: 3px solid rgb(0,100,150);
+	background: rgb(0,150,255);
+	height: 70px;
+	text-align: center;
+}
+
+
+
+@media all and (max-width: 1280px)
+{	
+	#box {
+		width: 60%;
+	}
+
+}
+
+@media all and (max-width: 800px)
+{	
+	#box {
+		width: 70%;
+	}
+	
+}
