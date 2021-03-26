@@ -16,7 +16,7 @@ function authenticate_button() {
 	$("#boxMain").append($("<br>"))
 	const $passwd = $("<input>").attr("type", "text")
 	$("#boxMain").append($passwd)
-	let $send_passwd = $("<button>").attr("onClick", "???")
+	const $send_passwd = $("<button>").attr("onClick", "???")
 	$send_passwd.append("(r)Envoyer par e-mail")
 	$("#boxMain").append($send_passwd)
 	$("#boxMain").append("<br>")
@@ -27,12 +27,12 @@ function template_vote_button(txt_b1, txt_b2) {
 	$("#boxMain").append("<br>")
 	const $vote = $("<input>").attr("type", "text")
 	$("#boxMain").append($vote)
-	let $search_vote = $("<button>").attr("onClick", "???")
+	const $search_vote = $("<button>").attr("onClick", "???")
 	$search_vote.append(txt_b1)
 	$("#boxMain").append($search_vote)
 	$("#boxMain").append("<br>")
 
-	let $apply = $("<button>").attr("onClick", "???")
+	const $apply = $("<button>").attr("onClick", "???")
 	$apply.append(txt_b2)
 	$("#boxMain").append($apply)
 }
@@ -50,7 +50,7 @@ function manage_button() {
 }
 
 function create_button() {
-	let $apply = $("<button>").attr("onClick", "createBallotPage()")
+	const $apply = $("<button>").attr("onClick", "manageBallot(); createBallot()")
 	$apply.append("Créer un scrutin")
 	$("#boxMain").append($apply)
 }
