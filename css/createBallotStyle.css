@@ -1,7 +1,60 @@
 aside {
 	display: flex;	
+	position: relative;
 	flex-direction: column;
 	justify-content: space-around;
 	position: absolute;
-	height: 600px;	
+	height: 610px;	
+	width: 200px;
+	background: rgb(30,150,255);
+	border-radius: 0 20px 20px 0;
+	border-right: 2px solid rgb(30,150,255);
+	visibility: hidden;
+	left: -210px;
+}
+
+aside > * {
+	/*margin: 10px;*/
+	position: relative;
+	left: -30px;
+	font-size: 0.8em;
+	transition: left 0.5s ease-out;
+}
+
+aside button {
+	background: white;
+	border: none;
+	outline: none;
+	height: 50px;
+	border-radius: 0 5px 5px 0;
+}
+
+aside button:hover {
+    background: rgb(230,230,255);
+	left: 0;
+	transition: left 0.75s ease-out;
+}
+
+@media all and (max-width: 1280px)
+{	
+	#box {
+		margin-left: 25%;
+	}
+
+}
+
+@media all and (max-width: 800px)
+{	
+	#box {
+		margin-left: 25%;
+	}
+	
+	aside {
+		width: 120px;
+	}
+	
+	aside > * {
+		font-size: 0.5em;
+	}	
+	
 }

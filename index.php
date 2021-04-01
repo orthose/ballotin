@@ -14,7 +14,6 @@
 		$message = 'bienvenue';
 		setcookie("seen", true);
 	}
-	
 ?>
 
 <!doctype html>
@@ -26,6 +25,7 @@
   <!-- JAVASCRIPT -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/ballotCreation.js"></script>
+  <script src="js/ballotVote.js"></script>
   <script src="js/button.js"></script>
   <!-- CSS -->
   <link href='css/mainStyle.css' rel='stylesheet'/>
@@ -42,9 +42,9 @@
 		</aside>
 		<div id='box'>
 			<header id='boxHeader'>
-				<img>
+				<a id='back'> <img src='resources/images/Arrow_left.png'> </a>
 				<p id='intro'> Bonjour, <?= $message ?> sur Ballotin un site de vote anonyme crypté en ligne ! </p>
-				<img src='resources/images/Arrow_right.png'>
+				<img src='resources/images/logo.png'>
 			</header>
 			
 			<main id='boxMain'>				

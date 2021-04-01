@@ -107,6 +107,20 @@ function createBallot() {
 	$list.append($voters)
 
 	$("#boxMain").html($list)
+	
+	
+	// Bar de navigation
+	$("aside").html("<button> Créer le scrutin </button>")
+	$("aside").append("<button> Inviter les perticipants </button>")
+	$("aside").append("<button> Voter </button>")
+	$("aside").append("<button> Afficher la participation </button>")
+	$("aside").append("<button> Fermer le scrutin </button>")
+	$("aside").append("<button> Détruire le scrutin </button>")
+	$("aside").append("<button> Exit </button>")
+	
+	$("aside").css("left", "-200");
+	$("aside").animate({left: '0'});
+	$("aside").css("visibility", "visible");
 }
 
 function removeChoice(tag) {
