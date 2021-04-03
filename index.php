@@ -27,6 +27,7 @@
   <script src="js/ballotCreation.js"></script>
   <script src="js/ballotVote.js"></script>
   <script src="js/button.js"></script>
+  <script src="js/ajax.js"></script>
   <!-- CSS -->
   <link href='css/mainStyle.css' rel='stylesheet'/>
   <link href='css/welcomeStyle.css' rel='stylesheet'/>
