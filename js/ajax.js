@@ -1,9 +1,17 @@
+/**********************************
+  Projet Programmation Web
+  L3 Info Université Paris-Saclay
+  Auteur: Maxime Vincent 
+  Contenu: Appels Ajax
+***********************************/
+
+// Crée un fichier de scrutin sur le serveur
 function createBallotAjax() {
 
 	// Récupération des options
 	const options = []
 	$(".options").each(function() {
-		options.push($(this).val())
+		options.push(($(this).val()).trim())
 	})
 
 	// Récupération des votantset procurations
@@ -20,7 +28,7 @@ function createBallotAjax() {
 			npow++
 		}
 		j++
-		voters[$(this).val()] = npow
+		voters[($(this).val()).trim()] = npow
 	})
 
 	$.ajax({
@@ -28,7 +36,7 @@ function createBallotAjax() {
     url: "/ballotin/php/createBallot.php",
     data: {
     	"organiser": $("#organiser").val(),
-    	"question": $("textarea").val(),
+    	"question": ($("textarea").val()).trim(),
     	"options": options,
     	"voters": voters
     }
@@ -39,4 +47,41 @@ function createBallotAjax() {
     console.log("Error: createBallotAjax")
     console.log(e)
   })
+}
+
+// Vérifie que l'utilisateur est valide
+function authenticateAjax() {
+	// Récupération du login et password
+	const login = $("#email").val()
+	const passwd = $("#passwd").val()
+	let res = false
+	$.ajax({
+    method: "GET",
+    url: "/ballotin/php/authenticate.php",
+    // Nécessaire car modification de variable
+    // (Bogue horrible à trouver)
+    async: false,
+    dataType: "json",
+    data: {
+    	"login": login,
+    	"passwd": passwd
+    }
+  }).done(function(bool) {
+   	res = bool
+   	// L'authentification a échoué
+   	let color = "rgb(255,0,0)"
+   	// L'authentification a réussi
+   	if (res) {
+   		color = "rgb(0,255,0)"
+   	}
+   	// TODO: Le vert ne s'affiche pas
+   	$("#email").css("background", color)
+    $("#email").css("transition", "background 3s")
+    $("#passwd").css("background", color)
+    $("#paswwd").css("transition", "background 3s")
+  }).fail(function(e) {
+    console.log("Error: authenticateAjax")
+    console.log(e)
+  })
+	return res
 }

@@ -8,7 +8,10 @@
 
 // Bar de navigation
 function manageBallot() {
-	$("aside").html("<button onClick='createBallotAjax(); $(this).attr(\"disabled\", \"\")'> Créer le scrutin </button>")
+	$("aside").html(
+		`<button onClick='createBallotAjax();
+		$(this).attr("disabled", "")'> 
+		Créer le scrutin </button>`)
 	$("aside").append("<button> Inviter les perticipants </button>")
 	$("aside").append("<button> Voter </button>")
 	$("aside").append("<button> Afficher la participation </button>")

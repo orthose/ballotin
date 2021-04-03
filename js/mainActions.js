@@ -9,12 +9,14 @@ function authenticate_button() {
 	$("#boxMain").html("E-mail de l'électeur :")
 	$("#boxMain").append($("<br>"))
 	const $email = $("<input>").attr("type", "text")
+	$email.attr("id", "email")
 	$("#boxMain").append($email)
 	$("#boxMain").append($("<br>"))
 
 	$("#boxMain").append("Mot de passe :")
 	$("#boxMain").append($("<br>"))
-	const $passwd = $("<input>").attr("type", "text")
+	const $passwd = $("<input>").attr("type", "password")
+	$passwd.attr("id", "passwd")
 	$("#boxMain").append($passwd)
 	const $send_passwd = $("<button>").attr("onClick", "???")
 	$send_passwd.append("(r)Envoyer par e-mail")
@@ -22,7 +24,8 @@ function authenticate_button() {
 	$("#boxMain").append("<br>")
 	
 	$("#back").css("visibility", "visible")
-	$("#back").attr("href", "index.php") // Modif: Revenir en arrière avec une fonction JAVASCRIPT (History de préférence)
+	// Modif: Revenir en arrière avec une fonction JAVASCRIPT (History de préférence)
+	$("#back").attr("href", "index.php")
 }
 
 function template_vote_button(txt_b1, txt_b2) {
@@ -40,7 +43,8 @@ function template_vote_button(txt_b1, txt_b2) {
 	$("#boxMain").append($apply)
 	
 	$("#back").css("visibility", "visible")
-	$("#back").attr("href", "index.php") // Modif: Revenir en arrière avec une fonction JAVASCRIPT (History de préférence)
+	// Modif: Revenir en arrière avec une fonction JAVASCRIPT (History de préférence)
+	$("#back").attr("href", "index.php")
 }
 
 function vote_button() {
@@ -56,10 +60,12 @@ function manage_button() {
 }
 
 function create_button() {
-	const $apply = $("<button>").attr("onClick", "manageBallot(); createBallot()")
+	const $apply = $("<button>").attr("onClick",
+	 "if (authenticateAjax()) {manageBallot(); createBallot()}")
 	$apply.append("Créer un scrutin")
 	
 	$("#boxMain").append($apply)
 	$("#back").css("visibility", "visible")
-	$("#back").attr("href", "index.php") // Modif: Revenir en arrière avec une fonction JAVASCRIPT (History de préférence)
+	// Modif: Revenir en arrière avec une fonction JAVASCRIPT (History de préférence)
+	$("#back").attr("href", "index.php")
 }
