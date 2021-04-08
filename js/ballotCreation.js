@@ -30,8 +30,9 @@ function createBallot() {
 	const $list = $("<ol>")
 
 	// 1. Organisateur
-	const $organiser = $("<li>").append("Organisateur")
-	$organiser.append("<br>")
+	const $organiser = $("<li>").append("<h3>Organisateur :</h3>")
+	$organiser.attr("class", "col")
+	//$organiser.append("<br>")
 	const $email = $("<input>").attr("type", "text")
 	$email.attr("readonly", "")
 	$organiser.append($email)
@@ -40,17 +41,20 @@ function createBallot() {
 	//$list.append($passwd)
 
 	// 2. Question
-	const $question = $("<li>").append("Question")
-	$question.append("<br>")
+	const $question = $("<li>").append("<h3>Question :</h3>")
+	$question.attr("class", "col")
+	//$question.append("<br>")
 	const $text = $("<textarea>")
 		.append("Êtes-vous d'accord pour ... ?")
 	$question.append($text)
 	$list.append($question)
 
 	// 3. Choix de réponse
-	const $options = $("<li>").append("Options")
+	const $options = $("<li>").append("<br>")
+	$options.append("Options")
 	$options.append("<br>")
-	const $trashChoice = $("<button>").attr("onClick", "removeChoice(this)")
+	const $trashChoice = $("<button> - </button>").attr("onClick", "removeChoice(this)")
+	$trashChoice.attr("class", "trash")
 
 	const array = ["Oui", "Non", "Abstention"]
 	array.forEach(function (x) {
@@ -62,13 +66,14 @@ function createBallot() {
 	})
 
 	const $new = $("<input>").attr("type", "text")
-	const $addChoice = $("<button>").attr("onClick", "addChoice(this)")
+	const $addChoice = $("<button> + </button>").attr("onClick", "addChoice(this)")
+	$addChoice.attr("class", "add")
 	$options.append($new)
 	$options.append($addChoice)
 	$list.append($options)
 
 	// 4. Votants participant
-	const $voters = $("<li>").append("Électeurs")
+	const $voters = $("<li>").append("Électeurs ")
 	
 	// Listes prédéfinies
 	const $select = $("<select>")
@@ -81,8 +86,10 @@ function createBallot() {
 	$select.append($("<option> L3 MIAGE </option>").val("l3miage"))
 	$voters.append($select)
 
-	const $trashVoter = $("<button>").attr("onClick", "removeVoter(this)")
-	const $addVoter = $("<button>").attr("onClick", "addVoter(this)")
+	const $trashVoter = $("<button> - </button>").attr("onClick", "removeVoter(this)")
+	$trashVoter.attr("class", "trash")
+	const $addVoter = $("<button> + </button>").attr("onClick", "addVoter(this)")
+	$addVoter.attr("class", "trash")
 	const $table = $("<table>")
 	const $line1 = $("<tr>")
 
@@ -95,12 +102,15 @@ function createBallot() {
 	const $checkbox = $("<input>").attr("type", "checkbox")
 	const $cell = $("<td>").append($checkbox)
 	$cell.append($checkbox.clone())
-	$cell.append($trashVoter) 
+	const $cell2 = $("<td>").append($trashVoter)
+
 	$line2.append($cell)
+	$line2.append($cell2)
 	$table.append($line2)
 
 	const $line3 = $("<tr>")
 	$line3.append($("<td>").append($new.clone()))
+	$line3.append("<td>")
 	$line3.append($("<td>").append($addVoter))
 	$table.append($line3)
 	$voters.append($table)
@@ -140,7 +150,8 @@ function addChoice(tag) {
 		$choice.val(value)
 		$choice.attr("readonly", "")
 		$(tag).prev().before($choice)
-		const $trash = $("<button>").attr("onClick", "removeChoice(this)")
+		const $trash = $("<button> - </button>").attr("onClick", "removeChoice(this)")
+		$trash.attr("class", "trash")
 		$(tag).prev().before($trash.add("<br>"))
 	}
 }
@@ -162,9 +173,11 @@ function addVoter(tag) {
 		const $checkbox = $("<input>").attr("type", "checkbox")
 		const $cell = $("<td>").append($checkbox)
 		$cell.append($checkbox.clone())
-		const $trashVoter = $("<button>").attr("onClick", "removeVoter(this)")
-		$cell.append($trashVoter)
+		const $trashVoter = $("<button> - </button>").attr("onClick", "removeVoter(this)")
+		$trashVoter.attr("class", "trash")
+		const $cell2 = $("<td>").append($trashVoter)
 		$newLine.append($cell)
+		$newLine.append($cell2)
 		$(tag).parent().parent().before($newLine)
 	}
 }

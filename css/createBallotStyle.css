@@ -35,26 +35,50 @@ aside button:hover {
 	transition: left 0.75s ease-out;
 }
 
+#box ol {
+	display : flex;
+	flex-direction: column;
+	list-style-type: none;
+	align-items: center;
+}
+
+#box .col {
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+}
+
+#box table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#box .trash {
+	width: 30px;
+	height: 30px;
+}
+
+#box .add {
+	width: 30px;	
+	height: 30px;
+}
+
 @media all and (max-width: 1280px)
 {	
 	#box {
 		margin-left: 25%;
 	}
-
 }
 
 @media all and (max-width: 800px)
 {	
-	#box {
-		margin-left: 25%;
-	}
-	
 	aside {
 		width: 120px;
 	}
 	
 	aside > * {
-		font-size: 0.5em;
-	}	
-	
+		left: -10px;
+		font-size: 0.5em;	
+	}		
 }
