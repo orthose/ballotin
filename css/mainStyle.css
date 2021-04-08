@@ -11,6 +11,9 @@ html, body {
 /*---------- Header ----------*/
 
 body > header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 	background: rgb(0,150,255);
 	border-bottom: 3px solid rgb(0,100,150);
 	z-index: 2;
@@ -20,6 +23,10 @@ body > header {
 	height: 50px;
 	width: 100%;
 	text-align: center;
+}
+
+body > header > * {
+	width: 33%;
 }
 
 body > header h1 {
@@ -33,6 +40,22 @@ body > header h1 a {
 	text-decoration: none;
 }
 
+#createAccount {
+	color: white;
+	background: none;
+	border: none;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+}
+
+#createAccount:focus {
+	outline: none;
+}
+
+#createAccount:hover {
+	text-decoration: underline;
+}
 
 /*---------- Main ----------*/
 

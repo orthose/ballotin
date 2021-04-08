@@ -64,6 +64,10 @@ aside button:hover {
 	height: 30px;
 }
 
+#boxMain textarea {
+  resize: none;
+}
+
 @media all and (max-width: 1280px)
 {	
 	#box {

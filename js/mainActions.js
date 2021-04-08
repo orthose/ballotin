@@ -12,15 +12,16 @@ function authenticate_button() {
 	$email.attr("id", "email")
 	$("#boxMain").append($email)
 	$("#boxMain").append($("<br>"))
+	$("#boxMain").append($("<br>"))
 
-	$("#boxMain").append("Mot de passe :")
+	$("#boxMain").append("Mot de passe :")	
 	$("#boxMain").append($("<br>"))
 	const $passwd = $("<input>").attr("type", "password")
 	$passwd.attr("id", "passwd")
 	$("#boxMain").append($passwd)
-	const $send_passwd = $("<button>").attr("onClick", "???")
-	$send_passwd.append("(r)Envoyer par e-mail")
-	$("#boxMain").append($send_passwd)
+	const $forgotten_passwd = $("<button>").attr("onClick", "sendMail()")
+	$forgotten_passwd.append("Mot de passe oublié ?")
+	$("#boxMain").append($forgotten_passwd)
 	$("#boxMain").append("<br>")
 	
 	$("#back").css("visibility", "visible")
@@ -38,7 +39,7 @@ function template_vote_button(txt_b1, txt_b2) {
 	$("#boxMain").append($search_vote)
 	$("#boxMain").append("<br>")
 
-	const $apply = $("<button>").attr("onClick", "voteBallotPage()")
+	const $apply = $("<button>").attr("onClick", "if(authenticateAjax() /*&&  */) {voteBallotPage()}")
 	$apply.append(txt_b2)
 	$("#boxMain").append($apply)
 	

@@ -17,14 +17,14 @@ else if (!filter_var($login, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Vérification que l'utilisateur n'existe pas déjà
-else if (!checkUser($login)) {
+else if (checkUser($login)) {
 	echo json_encode(-3);
 }
 
 else {
 	// Simples quoted 'passwd' pour protéger injection bash
 	$cmd = "htpasswd -b ../secret/passwd.txt $login '$passwd'";
-	system($cmd, $res);
+	$test = system($cmd, $res);
 	// Code d'erreur = 0 si succès de mise à jour
 	// Code d'erreur in [1-7] si problème rencontré
 	echo json_encode($res);

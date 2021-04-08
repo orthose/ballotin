@@ -6,12 +6,14 @@
 	}
 	
 	// Regarder si l'utilisateur est déjà venu
-	if(isset($_COOKIE['seen'])) {
-		$message = 'bienvenue, heureux de vous revoir';
+	if(isset($_GET['accountCreated'])) {
+		$message = "Merci d'avoir créée un compte, vous pouvez désormais utiliser toutes les fonctionnalités du site !";
+	} else if(isset($_COOKIE['seen'])) {
+		$message = "Bonjour, bienvenue heureux de vous revoir sur Ballotin un site de vote anonyme crypté en ligne !";
 	} 
 	// Enregistrer un cookie pour savoir si l'utilisateur est déjà venu
 	else {
-		$message = 'bienvenue';
+		$message = "Bonjour, bienvenue sur ballotin un site du vote anonyme crypté en ligne ! Créer votre compte pour pouvoir utiliser toutes ses fonctionnalités";		
 		setcookie("seen", true);
 	}
 ?>
@@ -27,6 +29,7 @@
   <script src="js/ballotCreation.js"></script>
   <script src="js/ballotVote.js"></script>
   <script src="js/mainActions.js"></script>
+  <script src="js/createAccount.js"></script>
   <script src="js/ajax.js"></script>
   <!-- CSS -->
   <link href='css/mainStyle.css' rel='stylesheet'/>
@@ -35,7 +38,9 @@
 </head>
 <body>
 	<header> 
+		<p> </p>
 		<h1> <a href='index.php'> Ballotin </a> </h1> 
+		<div><button onClick="createAccountPage()" id="createAccount"> Créer un compte </button></div>
 	</header>
 	
 	<main>
@@ -44,7 +49,7 @@
 		<div id='box'>
 			<header id='boxHeader'>
 				<a id='back'> <img src='resources/images/Arrow_left.png'> </a>
-				<p id='intro'> Bonjour, <?= $message ?> sur Ballotin un site de vote anonyme crypté en ligne ! </p>
+				<p id='intro'> <?= $message ?> </p>
 				<img src='resources/images/logo.png'>
 			</header>
 			

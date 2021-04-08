@@ -1,13 +1,12 @@
 /**********************************
   Projet Programmation Web
   L3 Info Université Paris-Saclay
-  Auteur: Maxime Vincent 
+  Auteur: Maxime Vincent & Baptiste Maquet
   Contenu: Appels Ajax
 ***********************************/
 
 // Crée un fichier de scrutin sur le serveur
 function createBallotAjax() {
-
 	// Récupération des options
 	const options = []
 	$(".options").each(function() {
@@ -55,6 +54,7 @@ function authenticateAjax() {
 	const login = $("#email").val()
 	const passwd = $("#passwd").val()
 	let res = false
+	
 	$.ajax({
     method: "GET",
     url: "/ballotin/php/authenticate.php",
@@ -68,17 +68,13 @@ function authenticateAjax() {
     }
   }).done(function(bool) {
    	res = bool
-   	// L'authentification a échoué
-   	let color = "rgb(255,0,0)"
-   	// L'authentification a réussi
-   	if (res) {
-   		color = "rgb(0,255,0)"
+
+   	// L'authentification a échouée
+   	if (!res) {
+		$("#boxFooter").html("<p><strong> Mauvais login ou mot de passe !<strong><p>")
+		$("#boxFooter").css("color", "rgb(220, 0, 0)")
+		$("#boxFooter").css("font-size", "2em")
    	}
-   	// TODO: Le vert ne s'affiche pas
-   	$("#email").css("background", color)
-    $("#email").css("transition", "background 3s")
-    $("#passwd").css("background", color)
-    $("#paswwd").css("transition", "background 3s")
   }).fail(function(e) {
     console.log("Error: authenticateAjax")
     console.log(e)
@@ -101,22 +97,46 @@ function createUserAjax() {
     }
   }).done(function(res) {
   	if (res === 0) {
-  		$("#boxFooter").
+		window.location.assign("index.php?accountCreated=true")
   	}
    	else if (res === -1) {
-   		$("#boxFooter").
+		$("#boxFooter").html("<p> Mot de passe trop court la longueur doit au moins être de 8 charactères </p>")
    	}
    	else if (res === -2) {
-
+   		$("#boxFooter").html("<p> Le format du mail est invalide </p>")
    	}
    	else if (res === -3) {
-   		
+   		$("#boxFooter").html("<p> Le compte existe déja </p>")		
    	}
    	else {
-
+		$("#boxFooter").html("<p> Une erreur indéfini a eu lieu </p>")		
    	}
   }).fail(function(e) {
     console.log("Error: createUserAjax")
     console.log(e)
   })
+}
+
+// Send mail
+function sendMail() {
+	// Récupération du login et du password
+	const login = $("#email").val()
+
+	$.ajax({
+    		method: "GET",
+   		url: "/ballotin/php/mail.php",
+    		dataType: "json",
+   		data: {
+    			"mail": login,
+    		}
+  	}).done(function(res) {
+		if(res) {
+			$("#boxFooter").html("<p> Un mail à été envoyé </p>")	
+		} else {
+			$("#boxFooter").html("<p> Une erreur a eu lieu pendant l'envoie du mail </p>")		
+		}
+	}).fail(function(e) {
+    		console.log("Error: sendMail")
+    		console.log(e)
+ 	})
 }

@@ -1,8 +1,7 @@
 /**********************************
   Projet Programmation Web
   L3 Info Université Paris-Saclay
-  Auteurs: Maxime Vincent 
-  & Baptiste Maquet
+  Auteurs: Maxime Vincent & Baptiste Maquet
   Contenu: Boutons et champs texte
 ***********************************/
 
@@ -45,7 +44,7 @@ function createBallot(organiser_email) {
 	const $question = $("<li>").append("<h3>Question :</h3>")
 	$question.attr("class", "col")
 	//$question.append("<br>")
-	const $text = $("<textarea>")
+	const $text = $("<textarea>").attr("rows", "5")
 		.append("Êtes-vous d'accord pour ... ?")
 	$question.append($text)
 	$list.append($question)
