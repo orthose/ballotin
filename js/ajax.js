@@ -85,3 +85,38 @@ function authenticateAjax() {
   })
 	return res
 }
+
+function createUserAjax() {
+	// Récupération du login et du password
+	const login = $("#email").val()
+	const passwd = $("#passwd").val()
+
+	$.ajax({
+    method: "GET",
+    url: "/ballotin/php/createUser.php",
+    dataType: "json",
+    data: {
+    	"login": login,
+    	"passwd": passwd
+    }
+  }).done(function(res) {
+  	if (res === 0) {
+  		$("#boxFooter").
+  	}
+   	else if (res === -1) {
+   		$("#boxFooter").
+   	}
+   	else if (res === -2) {
+
+   	}
+   	else if (res === -3) {
+   		
+   	}
+   	else {
+
+   	}
+  }).fail(function(e) {
+    console.log("Error: createUserAjax")
+    console.log(e)
+  })
+}

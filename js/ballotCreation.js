@@ -24,7 +24,7 @@ function manageBallot() {
 	$("aside").css("visibility", "visible")
 }
 
-function createBallot() {
+function createBallot(organiser_email) {
 	// Liste des champs du scrutin
 	const $list = $("<ol>")
 
@@ -33,6 +33,7 @@ function createBallot() {
 	$organiser.attr("class", "col")
 	//$organiser.append("<br>")
 	const $email = $("<input>").attr("type", "text")
+	$email.val(organiser_email)
 	$email.attr("readonly", "")
 	$email.attr("id", "organiser")
 	$organiser.append($email)
@@ -51,7 +52,7 @@ function createBallot() {
 
 	// 3. Choix de réponse
 	const $options = $("<li>").append("<br>")
-	$options.append("Options")
+	$options.append("<h3>Options :</h3>")
 	$options.append("<br>")
 	const $trashChoice = $("<button> - </button>").attr("onClick", "removeChoice(this)")
 	$trashChoice.attr("class", "trash")
@@ -99,7 +100,7 @@ function createBallot() {
 	$table.append($line1)
 
 	const $line2 = $("<tr>")
-	$line2.append($("<td>").append($email.clone().addClass("voters")))
+	$line2.append($("<td>").append($email.clone().addClass("voters").val(organiser_email)))
 	const $checkbox = $("<input>").attr("type", "checkbox")
 	const $cell = $("<td>").append($checkbox)
 	$cell.append($checkbox.clone())
