@@ -6,23 +6,22 @@
   Contenu: Boutons et champs texte
 ***********************************/
 
-// TODO: Faire fonctionner les boutons
-// Appel AJAX pour récupérer les listes JSON
-// Définir comment stocker un scrutin
-// Est-ce que tous les scrutins stockés dans un
-// seul fichier JSON ?
-
-// TODO: Mettre scrollbar quand trop d'options ou liste
-// de votants trop longue ?
-
+// Bar de navigation
 function manageBallot() {
-	$("aside").html("<button> Créer le scrutin </button>")
+	$("aside").html(
+		`<button onClick='createBallotAjax();
+		$(this).attr("disabled", "")'> 
+		Créer le scrutin </button>`)
 	$("aside").append("<button> Inviter les perticipants </button>")
 	$("aside").append("<button> Voter </button>")
 	$("aside").append("<button> Afficher la participation </button>")
 	$("aside").append("<button> Fermer le scrutin </button>")
 	$("aside").append("<button> Détruire le scrutin </button>")
 	$("aside").append("<button> Exit </button>")
+
+	$("aside").css("left", "-200")
+	$("aside").animate({left: '0'})
+	$("aside").css("visibility", "visible")
 }
 
 function createBallot() {
@@ -35,6 +34,7 @@ function createBallot() {
 	//$organiser.append("<br>")
 	const $email = $("<input>").attr("type", "text")
 	$email.attr("readonly", "")
+	$email.attr("id", "organiser")
 	$organiser.append($email)
 	$list.append($organiser)
 	//const $passwd = $("<input>").attr("type", "text")
@@ -61,6 +61,7 @@ function createBallot() {
 		const $ch = $("<input>").attr("type", "text")
 		$ch.attr("value", x)
 		$ch.attr("readonly", "")
+		$ch.addClass("options")
 		$options.append($ch)
 		$options.append($trashChoice.clone().add("<br>"))
 	})
@@ -98,7 +99,7 @@ function createBallot() {
 	$table.append($line1)
 
 	const $line2 = $("<tr>")
-	$line2.append($("<td>").append($email.clone()))
+	$line2.append($("<td>").append($email.clone().addClass("voters")))
 	const $checkbox = $("<input>").attr("type", "checkbox")
 	const $cell = $("<td>").append($checkbox)
 	$cell.append($checkbox.clone())
@@ -117,20 +118,6 @@ function createBallot() {
 	$list.append($voters)
 
 	$("#boxMain").html($list)
-	
-	
-	// Bar de navigation
-	$("aside").html("<button> Créer le scrutin </button>")
-	$("aside").append("<button> Inviter les perticipants </button>")
-	$("aside").append("<button> Voter </button>")
-	$("aside").append("<button> Afficher la participation </button>")
-	$("aside").append("<button> Fermer le scrutin </button>")
-	$("aside").append("<button> Détruire le scrutin </button>")
-	$("aside").append("<button> Exit </button>")
-	
-	$("aside").css("left", "-200");
-	$("aside").animate({left: '0'});
-	$("aside").css("visibility", "visible");
 }
 
 function removeChoice(tag) {
@@ -149,6 +136,7 @@ function addChoice(tag) {
 		const $choice = $("<input>").attr("type", "text")
 		$choice.val(value)
 		$choice.attr("readonly", "")
+		$choice.addClass("options")
 		$(tag).prev().before($choice)
 		const $trash = $("<button> - </button>").attr("onClick", "removeChoice(this)")
 		$trash.attr("class", "trash")
@@ -169,6 +157,7 @@ function addVoter(tag) {
 		const $voter = $("<input>").attr("type", "text")
 		$voter.val(value)
 		$voter.attr("readonly", "")
+		$voter.addClass("voters")
 		$newLine.append($("<td>").append($voter))
 		const $checkbox = $("<input>").attr("type", "checkbox")
 		const $cell = $("<td>").append($checkbox)
