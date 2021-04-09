@@ -114,6 +114,84 @@ function selectListVotersAjax(tag) {
   }
 }
 
+// Recherche de scrutins
+function searchBallotAjax(mode) {
+  const organiser = $("#email").val()
+  if (organiser === "") {
+    $("#boxFooter").html("<p class='error'> Veuillez entrer votre login. <p>")
+  } 
+  else {
+    $.ajax({
+      method: "GET",
+      url: "/ballotin/php/searchBallot.php",
+      dataType: "json",
+      data: {
+        "organiser": organiser,
+        "mode": mode
+      }
+    }).done(function(array) {
+      $table = $("<table>").append("<tr><th> Organisateur </th><th> Numéro de scrutin </th></tr>")
+      array.forEach(function([org, num]) {
+        $table.append("<tr><td>"+org+"</td><td>"+num+"</td></tr>")
+      })
+      $("#boxFooter").html($table)
+    }).fail(function(e) {
+      console.log("Error: searchBallotAjax")
+      console.log(e)
+    })
+  }
+}
+
+// Vérifie que le numéro de scrutin est valide
+function checkBallotAjax(num) {
+  let res = false
+  if (num === "") {
+    $("#boxFooter").html("<p class='error'> Numéro de scrutin invalide. </p>")
+  }
+  else {
+    $.ajax({
+      method: "GET",
+      url: "/ballotin/php/checkBallot.php",
+      // Nécessaire car modification de variable
+      // (Bogue horrible à trouver)
+      async: false,
+      dataType: "json",
+      data: {"numBallot": num}
+    }).done(function(bool) {
+      res = bool
+      if (!res) {
+        $("#boxFooter").html("<p class='error'> Numéro de scrutin invalide. </p>")
+      }
+    }).fail(function(e) {
+      console.log("Error: checkBallotAjax")
+      console.log(e)
+    })
+  }
+
+  return res
+}
+
+// Récupération d'un scrutin dont numéro donné
+// et valide (pas de test) 
+function getBallotAjax(num) {
+  $.ajax({
+    method: "GET",
+    url: "/ballotin/php/getBallot.php",
+    dataType: "json",
+    data: {"numBallot": num}
+  }).done(function(ballot) {
+    // Remplissage de la page de vote
+    $("textarea").text(ballot["question"])
+    ballot["options"].forEach(function(x) {
+      $("#options").append("<input name='options' type='radio' id='"+x+"'value='"+x+"'>")
+      $("#options").append("<label for='"+x+"'> "+x+" </label>")
+    })
+  }).fail(function(e) {
+    console.log("Error: getBallotAjax")
+    console.log(e)
+  })
+}
+
 // Vérifie que l'utilisateur est valide
 function authenticateAjax() {
 	// Récupération du login et password
@@ -137,7 +215,7 @@ function authenticateAjax() {
 
    	// L'authentification a échouée
    	if (!res) {
-		  $("#boxFooter").html("<p><strong> Mauvais login ou mot de passe !<strong><p>")
+		  $("#boxFooter").html("<p class='error'> Mauvais login ou mot de passe ! <p>")
 		  $("#boxFooter").css("color", "rgb(220, 0, 0)")
 		  $("#boxFooter").css("font-size", "2em")
    	}
@@ -166,16 +244,16 @@ function createUserAjax() {
 		window.location.assign("index.php?accountCreated=true")
   	}
    	else if (res === -1) {
-		$("#boxFooter").html("<p> Mot de passe trop court la longueur doit au moins être de 8 caractères </p>")
+		$("#boxFooter").html("<p class='error'> Mot de passe trop court la longueur doit au moins être de 8 caractères. </p>")
    	}
    	else if (res === -2) {
-   		$("#boxFooter").html("<p> Le format du mail est invalide </p>")
+   		$("#boxFooter").html("<p class='error'> Le format du mail est invalide. </p>")
    	}
    	else if (res === -3) {
-   		$("#boxFooter").html("<p> Le compte existe déja </p>")		
+   		$("#boxFooter").html("<p class='error'> Le compte existe déja. </p>")		
    	}
    	else {
-		$("#boxFooter").html("<p> Une erreur indéfinie a eu lieu </p>")		
+		$("#boxFooter").html("<p class='error'> Une erreur indéfinie a eu lieu. </p>")		
    	}
   }).fail(function(e) {
     console.log("Error: createUserAjax")

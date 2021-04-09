@@ -29,17 +29,22 @@ function authenticate_button() {
 	$("#back").attr("href", "index.php")
 }
 
-function template_vote_button(txt_b1, txt_b2) {
+// mode: true -> voter; false -> manager
+function template_vote_button(txt_b1, txt_b2, mode) {
 	$("#boxMain").append("Code de scrutin :")
 	$("#boxMain").append("<br>")
 	const $vote = $("<input>").attr("type", "text")
+	$vote.attr("id", "numBallot")
 	$("#boxMain").append($vote)
-	const $search_vote = $("<button>").attr("onClick", "???")
+	const $search_vote = $("<button>").attr("onClick", "searchBallotAjax("+mode+")")
 	$search_vote.append(txt_b1)
 	$("#boxMain").append($search_vote)
 	$("#boxMain").append("<br>")
 
-	const $apply = $("<button>").attr("onClick", "if(authenticateAjax() /*&&  */) {voteBallotPage()}")
+	const $apply = $("<button>").attr("onClick", 
+		`const num = $("#numBallot").val()
+		const voter = $("#email").val()
+		if(authenticateAjax() && checkBallotAjax(num)) {voteBallotPage(num, voter)}`)
 	$apply.append(txt_b2)
 	$("#boxMain").append($apply)
 	
@@ -51,13 +56,13 @@ function template_vote_button(txt_b1, txt_b2) {
 function vote_button() {
 	const txt_b1 = "Recherche de mes scrutins"
 	const txt_b2 = "Voter"
-	template_vote_button(txt_b1, txt_b2)
+	template_vote_button(txt_b1, txt_b2, true)
 }
 
 function manage_button() {
 	const txt_b1 = "Recherche de scrutins à administrer"
 	const txt_b2 = "Administrer ce scrutin"
-	template_vote_button(txt_b1, txt_b2)
+	template_vote_button(txt_b1, txt_b2, false)
 }
 
 function create_button() {
