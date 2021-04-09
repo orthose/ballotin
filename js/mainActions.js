@@ -19,6 +19,7 @@ function authenticate_button() {
 	const $passwd = $("<input>").attr("type", "password")
 	$passwd.attr("id", "passwd")
 	$("#boxMain").append($passwd)
+	$("#boxMain").append($("<br>"))
 	const $forgotten_passwd = $("<button>").attr("onClick", "sendMail()")
 	$forgotten_passwd.append("Mot de passe oublié ?")
 	$("#boxMain").append($forgotten_passwd)
