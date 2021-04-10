@@ -9,11 +9,11 @@
 	if(isset($_GET['accountCreated'])) {
 		$message = "Merci d'avoir créée un compte, vous pouvez désormais utiliser toutes les fonctionnalités du site !";
 	} else if(isset($_COOKIE['seen'])) {
-		$message = "Bonjour, bienvenue heureux de vous revoir sur Ballotin un site de vote anonyme crypté en ligne !";
+		$message = "Heureux de vous revoir sur Ballotin un site de vote anonyme crypté en ligne !";
 	} 
 	// Enregistrer un cookie pour savoir si l'utilisateur est déjà venu
 	else {
-		$message = "Bonjour, bienvenue sur ballotin un site du vote anonyme crypté en ligne ! Créer votre compte pour pouvoir utiliser toutes ses fonctionnalités";		
+		$message = "Bonjour et bienvenue sur ballotin un site du vote anonyme crypté en ligne ! Créer votre compte pour pouvoir utiliser toutes ses fonctionnalités";		
 		setcookie("seen", true);
 	}
 ?>
@@ -72,6 +72,6 @@
 	</main>
 	
 	<footer>
-		<p> test </p>
+		<p> Outil libre de droits -- Université Paris-Saclay @ 2021 </p>
 	</footer>
 </body>
