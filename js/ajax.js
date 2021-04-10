@@ -227,7 +227,7 @@ function authenticateAjax() {
 }
 
 function createUserAjax(override) {
-	console.log("start createUser")
+	//console.log("start createUser")
 	// Récupération du login et du password
 	const login = $("#email").val()
 	const passwd = $("#passwd").val()
@@ -239,16 +239,16 @@ function createUserAjax(override) {
     data: {
     	"login": login,
     	"passwd": passwd,
-	"override": override
+			"override": override
     }
   }).done(function(res) {
-	console.log("res createUser")
+		//console.log("res createUser")
   	if (res === 0) {
 		if(override) {
-			console.log("override")
+			//console.log("override")
 			window.location.assign("index.php?passwordChanged=true")
 		} else {
-			console.log("accountCreated")
+			//console.log("accountCreated")
 			window.location.assign("index.php?accountCreated=true")
 		}
   	}
@@ -276,50 +276,55 @@ function sendMail() {
 	// Récupération du login et du password
 	const login = $("#email").val()
 
-	$("#boxFooter").html("<p> Envoie du mail en cours... </p>")	
+	if (login === "") {
+		$("#boxFooter").html("<p class='error'> Veuillez entrer votre login. </p>")
+	}
+	else {
+		$("#boxFooter").html("<p> Envoi du mail en cours... </p>")	
 
-	$.ajax({
-    		method: "GET",
+		$.ajax({
+    	method: "GET",
    		url: "/ballotin/php/mail.php",
-    		dataType: "json",
+    	dataType: "json",
    		data: {
-    			"mail": login,
-			"sess_id": sessionID
-    		}
-  	}).done(function(res) {
-		if(res) {
-			changePasswordPage(login)	
-		} else {
-			$("#boxFooter").html("<p> Une erreur a eu lieu pendant l'envoi du mail </p>")		
-		}
-	}).fail(function(e) {
-    		console.log("Error: sendMail")
-    		console.log(e)
- 	})
+	    	"mail": login,
+				"sess_id": sessionID
+    	}
+ 	 	}).done(function(res) {
+			if(res) {
+				changePasswordPage(login)	
+			} else {
+				$("#boxFooter").html("<p class='error'> Une erreur a eu lieu pendant l'envoi du mail. </p>")		
+			}
+		}).fail(function(e) {
+    	console.log("Error: sendMail")
+    	console.log(e)
+ 		})
+	}
 }
 
 // Vérifie le token
 function checkToken() {
-	console.log("start checkToken")
+	//console.log("start checkToken")
 	const token = $("#token").val()
 
 	let bool = false
 
 	$.ajax({
-    		method: "GET",
-   		url: "/ballotin/php/checkToken.php",
+    method: "GET",
+   	url: "/ballotin/php/checkToken.php",
  		async: false,
-    		dataType: "json",
-   		data: {
-    			"token": token,
+    dataType: "json",
+   	data: {
+    	"token": token,
 			"sess_id": sessionID 
-    		}
-  	}).done(function(res) {
-		console.log("res checkToken")
-		console.log(res)
+    }
+  }).done(function(res) {
+		//console.log("res checkToken")
+		//console.log(res)
 		// Le token est incorrecte
 		if(!res) {
-			$("#boxFooter").html("<p> Token incorrect </p>")		
+			$("#boxFooter").html("<p class='error'> Token incorrect ! </p>")		
 		}
 
 		bool = res		

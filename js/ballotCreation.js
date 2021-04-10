@@ -25,6 +25,10 @@ function manageBallot() {
 }
 
 function createBallot(organiser_email) {
+
+	// Nettoyage du footer
+	$("#boxFooter").html("")
+
 	// Liste des champs du scrutin
 	const $list = $("<ol>")
 

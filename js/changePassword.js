@@ -8,7 +8,7 @@
 function changePasswordPage(userEmail) {
 	$("aside").empty()
 
-	$("#intro").html("Changer votre mot de passe")
+	$("#intro").html("Changez votre mot de passe")
 
 	$("#boxMain").html("E-mail :")
 	$("#boxMain").append($("<br>"))
@@ -49,5 +49,5 @@ function changePasswordPage(userEmail) {
 	// Modif: Revenir en arrière avec une fonction JAVASCRIPT (History de préférence)
 	$("#back").attr("href", "index.php")
 
-	$("#boxFooter").html("<p> Un mail contenant un token vous a été envoyé </p>")
+	$("#boxFooter").html("<p> Un mail contenant un token vous a été envoyé. </p>")
 }
