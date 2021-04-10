@@ -10,6 +10,7 @@ while (file_exists($file)) {
         $file = $path.$number.$format;
 }
 
+// Création du fichier
 file_put_contents($file, json_encode($_REQUEST, JSON_PRETTY_PRINT));
 // On renvoie le numéro de scrutin
 echo "<p>Le numéro de votre scrutin est : <b>".$number."</b></p>";

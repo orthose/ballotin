@@ -5,12 +5,13 @@
   Contenu: Boutons et champs texte
 ***********************************/
 
+// Nécessaire pour communication entre
+// selectListVotersAjax et createBallotAjax
+let votersAnonymous = false;
+
 // Bar de navigation
 function manageBallot() {
-	$("aside").html(
-		`<button onClick='createBallotAjax();
-		$(this).attr("disabled", "")'> 
-		Créer le scrutin </button>`)
+	$("aside").html("<button onClick='createBallotAjax(this)'> Créer le scrutin </button>")
 	$("aside").append("<button> Inviter les perticipants </button>")
 	$("aside").append("<button> Voter </button>")
 	$("aside").append("<button> Afficher la participation </button>")
@@ -67,6 +68,7 @@ function createBallot(organiser_email) {
 	})
 
 	const $new = $("<input>").attr("type", "text")
+	$new.attr("id", "addChoice")
 	const $addChoice = $("<button> + </button>").attr("onClick", "addChoice(this)")
 	$addChoice.attr("class", "add")
 	$options.append($new)
@@ -78,6 +80,7 @@ function createBallot(organiser_email) {
 	
 	// Listes prédéfinies
 	const $select = $("<select>")
+	$select.attr("onChange", "selectListVotersAjax(this)")
 	$select.append($("<option> Personnalisé </option>").val("custom"))
 	$select.append($("<option> Anonyme </option>").val("anonymous"))
 	$select.append($("<option> AVIZ </option>").val("aviz"))
@@ -89,7 +92,7 @@ function createBallot(organiser_email) {
 
 	const $trashVoter = $("<button> - </button>").attr("onClick", "removeVoter(this)")
 	$trashVoter.attr("class", "trash")
-	const $addVoter = $("<button> + </button>").attr("onClick", "addVoter(this)")
+	const $addVoter = $("<button> + </button>").attr("onClick", "addVoter()")
 	$addVoter.attr("class", "trash")
 	const $table = $("<table>")
 	const $line1 = $("<tr>")
@@ -110,7 +113,7 @@ function createBallot(organiser_email) {
 	$table.append($line2)
 
 	const $line3 = $("<tr>")
-	$line3.append($("<td>").append($new.clone()))
+	$line3.append($("<td>").append($new.clone().attr("id", "addVoter")))
 	$line3.append("<td>")
 	$line3.append($("<td>").append($addVoter))
 	$table.append($line3)
@@ -149,10 +152,11 @@ function removeVoter(tag) {
 	$(tag).parent().parent().remove()
 }
 
-function addVoter(tag) {
-	const value = $(tag).parent().prev().children().val()
-	if (value !== "") {
-		$(tag).parent().prev().children().val("")
+function addVoter() {
+	const value = $("#addVoter").val()
+	const regexEmail = /([\w-]+\.[\w-]+|[\w-]+)@([\w-]+\.\w+|[\w-]+)/
+	if (value !== "" && regexEmail.test(value)) {
+		$("#addVoter").val("")
 		const $newLine = $("<tr>")
 		const $voter = $("<input>").attr("type", "text")
 		$voter.val(value)
@@ -167,6 +171,6 @@ function addVoter(tag) {
 		const $cell2 = $("<td>").append($trashVoter)
 		$newLine.append($cell)
 		$newLine.append($cell2)
-		$(tag).parent().parent().before($newLine)
+		$("#addVoter").parent().parent().before($newLine)
 	}
 }

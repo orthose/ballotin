@@ -1,23 +1,34 @@
-function voteBallotPage() {
+/**********************************
+  Projet Programmation Web
+  L3 Info Université Paris-Saclay
+  Auteur: Baptiste Maquet & Maxime Vincent
+  Contenu: Page de vote
+***********************************/
+
+// num : numéro de scrutin
+function voteBallotPage(num, voter) {
+
+	// Nettoyage du footer
+	$("#boxFooter").html("")
+
 	// En tête de la boite
-	$("#intro").html("<p> Aller voter ! </p>")	
+	$("#intro").html("<p> Allez voter ! </p>")	
 	
 	// Boite principale
-	$("#boxMain").html("<h3> Votant : </h3>")	
+	$("#boxMain").html("<h3> Électeur : </h3>")	
 	
 	let votant = $("<div>")
-	votant.append("<input type='text' value='blabla' readonly>")
-	votant.append("truie@huitre.fr")
+	votant.append("<input type='text' readonly value='"+voter+"'>")
 	$("#boxMain").append(votant)
 	
 	let code = $("<div>")
 	code.append("<h3> Code du scrutin : </h3>")
-	code.append("<input type='text' value='424242' readonly>")
+	code.append("<input type='text' readonly value='"+num+"'>")
 	$("#boxMain").append(code)
 	
 	let question = $("<div>")
 	question.append("<h3> Question : </h3>")
-	let textzone = $("<textarea readonly> Un arbre a un avant et un arrière ? </textarea>")
+	let textzone = $("<textarea>")
 	textzone.css("width", "70%")
 	textzone.css("height", "50px")
 	
@@ -26,19 +37,13 @@ function voteBallotPage() {
 	
 	let choix = $("<div>")
 	choix.append("<h3> Question : </h3>")
-	let choixBoite = $("<div>")
-	// Liste des choix
-	choixBoite.append("<input type='radio' id='v1' name='vote' value='???' checked>")
-	choixBoite.append(" <label for='v1'> ??? </label>")
-	choixBoite.append("<input type='radio' id='v2' name='vote' value='???'>")
-	choixBoite.append(" <label for='v2'> ??? </label>")
-	choixBoite.append("<input type='radio' id='v3' name='vote' value='???'>")
-	choixBoite.append(" <label for='v3'> ??? </label>")
+	let choixBoite = $("<div id='options'>")
 	choix.append(choixBoite)
 	$("#boxMain").append(choix)
 	
-	$("#boxMain").append("<button> Voter ! </button>")
-	
-	
-	$("#boxMain").html($newContent)
+	$("#boxMain").append("<button onCheck='???'> Voter ! </button>")
+
+	// Complétion des champs du scrutin par appel ajax
+	// On suppose que le numéro de scrutin est valide
+	getBallotAjax(num)
 }
