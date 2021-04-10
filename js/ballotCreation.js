@@ -139,15 +139,25 @@ function removeChoice(tag) {
 function addChoice(tag) {
 	const value = $(tag).prev().val()
 	if (value !== "") {
-		$(tag).prev().val("")
-		const $choice = $("<input>").attr("type", "text")
-		$choice.val(value)
-		$choice.attr("readonly", "")
-		$choice.addClass("options")
-		$(tag).prev().before($choice)
-		const $trash = $("<button> - </button>").attr("onClick", "removeChoice(this)")
-		$trash.attr("class", "trash")
-		$(tag).prev().before($trash.add("<br>"))
+		// Vérification que cette option n'exisite pas déjà
+		let res = true
+		$(".options").each(function() {
+			if ($(this).val() === value) {
+				res = false
+			}
+		})
+
+		if (res) {
+			$(tag).prev().val("")
+			const $choice = $("<input>").attr("type", "text")
+			$choice.val(value)
+			$choice.attr("readonly", "")
+			$choice.addClass("options")
+			$(tag).prev().before($choice)
+			const $trash = $("<button> - </button>").attr("onClick", "removeChoice(this)")
+			$trash.attr("class", "trash")
+			$(tag).prev().before($trash.add("<br>"))
+		}
 	}
 }
 
