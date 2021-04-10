@@ -28,7 +28,7 @@ function voteBallotPage(num, voter) {
 	
 	let question = $("<div>")
 	question.append("<h3> Question : </h3>")
-	let textzone = $("<textarea>")
+	let textzone = $("<textarea disabled>")
 	textzone.css("width", "70%")
 	textzone.css("height", "50px")
 	
@@ -41,7 +41,9 @@ function voteBallotPage(num, voter) {
 	choix.append(choixBoite)
 	$("#boxMain").append(choix)
 	
-	$("#boxMain").append("<button onCheck='???'> Voter ! </button>")
+	$voteButton = $("<button>").text("Voter !")
+	$voteButton.attr("onClick", "voteAjax("+num+", '"+voter+"')")
+	$("#boxMain").append($voteButton)
 
 	// Complétion des champs du scrutin par appel ajax
 	// On suppose que le numéro de scrutin est valide

@@ -23,7 +23,8 @@ function createBallotAjax(tag) {
     const powers = $("input[type='checkbox']")
     let j = 0
     $(".voters").each(function() {
-		  let npow = 0
+    	// Un électeur peut voter au moins une fois
+		  let npow = 1
 		  if ($(powers[j]).is(":checked")) {
         npow++
 		  }
@@ -183,13 +184,56 @@ function getBallotAjax(num) {
     // Remplissage de la page de vote
     $("textarea").text(ballot["question"])
     ballot["options"].forEach(function(x) {
-      $("#options").append("<input name='options' type='radio' id='"+x+"'value='"+x+"'>")
-      $("#options").append("<label for='"+x+"'> "+x+" </label>")
+    	$option = $("<input name='options'type='radio'>")
+    	$option.attr("id", x)
+    	$option.attr("value", x)
+      $("#options").append($option)
+      $label = $("<label>")
+      $label.attr("for", x)
+      $label.append(x)
+      $("#options").append($label)
     })
   }).fail(function(e) {
     console.log("Error: getBallotAjax")
     console.log(e)
   })
+}
+
+// Permet de voter à un scrutin
+// num : numéro de scrutin valide
+// voter : électeur désirant voter
+function voteAjax(num, voter) {
+
+	// Récupération du choix de vote
+	const option = $("input[name='options']:checked").val()
+	console.log(option)
+	if (option !== undefined) {
+		$.ajax({
+			method: "GET",
+			url: "/ballotin/php/vote.php",
+			dataType: "json",
+			data: {
+				"numBallot": num,
+				"voter": voter,
+				"option": option
+			}
+		}).done(function(res) {
+			if (res[0]) {
+				$("#boxFooter").html("<p> Votre vote a bien été pris en compte. </p>")
+  		// On disabled le bouton de vote
+  		if (res[1] === 0) {
+  			$("#boxMain button").attr("disabled", "")
+  		}
+  	}
+  	else {
+  		$("#boxFooter").html("<p class='error'> Votre vote n'a pas été pris en compte ! </p>")
+  	}
+  	$("#boxFooter").append("<p> Il vous reste "+res[1]+" procuration(s) pour ce scrutin. </p>")
+  }).fail(function(e) {
+  	console.log("Error: voteAjax")
+  	console.log(e)
+  })
+}
 }
 
 // Vérifie que l'utilisateur est valide
