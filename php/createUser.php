@@ -4,6 +4,7 @@ require("checkUser.php");
 
 $login = trim($_REQUEST["login"]);
 $passwd = trim($_REQUEST["passwd"]);
+$override = $_REQUEST["override"];
 
 // Taille minimale du password = 8
 $pattern_passwd = "/[\w\s]{8}[\w\s]*/";
@@ -17,7 +18,7 @@ else if (!filter_var($login, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Vérification que l'utilisateur n'existe pas déjà
-else if (checkUser($login)) {
+else if (!$override && checkUser($login)) {
 	echo json_encode(-3);
 }
 

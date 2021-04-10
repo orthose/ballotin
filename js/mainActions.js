@@ -40,7 +40,7 @@ function template_vote_button(txt_b1, txt_b2) {
 	$("#boxMain").append($search_vote)
 	$("#boxMain").append("<br>")
 
-	const $apply = $("<button>").attr("onClick", "if(authenticateAjax() /*&&  */) {voteBallotPage()}")
+	const $apply = $("<button>").attr("onClick", "if(authenticateAjax()) {voteBallotPage()}")
 	$apply.append(txt_b2)
 	$("#boxMain").append($apply)
 	

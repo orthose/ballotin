@@ -18,6 +18,10 @@
 	}
 ?>
 
+<script type="text/javascript">
+    	var sessionID ='<?= session_id();?>'
+</script>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -30,6 +34,7 @@
   <script src="js/ballotVote.js"></script>
   <script src="js/mainActions.js"></script>
   <script src="js/createAccount.js"></script>
+  <script src="js/changePassword.js"></script>
   <script src="js/ajax.js"></script>
   <!-- CSS -->
   <link href='css/mainStyle.css' rel='stylesheet'/>
