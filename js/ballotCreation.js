@@ -12,7 +12,7 @@ let votersAnonymous = false;
 // Bar de navigation
 function manageBallot() {
 	$("aside").html("<button onClick='createBallotAjax(this)'> Créer le scrutin </button>")
-	$("aside").append("<button> Inviter les perticipants </button>")
+	$("aside").append("<button> Inviter les participants </button>")
 	$("aside").append("<button> Voter </button>")
 	$("aside").append("<button> Afficher la participation </button>")
 	$("aside").append("<button> Fermer le scrutin </button>")
@@ -25,6 +25,9 @@ function manageBallot() {
 }
 
 function createBallot(organiser_email) {
+
+	// Affichage de la bar de navigation
+	manageBallot() 
 
 	// Nettoyage du footer
 	$("#boxFooter").html("")

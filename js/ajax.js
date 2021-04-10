@@ -47,18 +47,22 @@ function createBallotAjax(tag) {
   }
   // On crée le scrutin
   else {
-	 $.ajax({
+  	const organiser = $("#organiser").val()
+	 	$.ajax({
       method: "GET",
       url: "/ballotin/php/createBallot.php",
+      dataType: "json",
       data: {
-    	 "organiser": $("#organiser").val(),
+    	 "organiser": organiser,
     	 "question": ($("textarea").val()).trim(),
     	 "options": options,
     	 "voters": voters
       }
-    }).done(function(res) {
+    }).done(function(num) {
       // Afficher le numéro de scrutin
-      $("#boxFooter").html(res)
+      $("#boxFooter").html("<p>Le numéro de votre scrutin est : <b>"+num+"</b></p>")
+      // Permettre l'accès rapide au vote
+      $($("aside button")[2]).attr("onClick", "voteBallotPage("+num+", '"+organiser+"')")
     }).fail(function(e) {
       console.log("Error: createBallotAjax")
       console.log(e)

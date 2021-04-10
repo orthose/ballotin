@@ -69,7 +69,7 @@ function manage_button() {
 
 function create_button() {
 	const $apply = $("<button>").attr("onClick",
-	 "if (authenticateAjax()) {manageBallot(); createBallot($('#email').val())}")
+	 "if (authenticateAjax()) {createBallot($('#email').val())}")
 	$apply.append("Créer un scrutin")
 	
 	$("#boxMain").append($apply)
