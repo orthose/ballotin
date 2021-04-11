@@ -37,7 +37,7 @@ function browsingBar(organiser) {
 	$removeButton = $("<button>").append("Détruire le scrutin")
 	$removeButton.on("click", errorFunction)
 	$("aside").append($removeButton)
-	$("aside").append("<button> <a href='index.php'> Exit </a> </button>")
+	$("aside").append("<button onClick='window.location.assign(\"index.php\")'> Exit </button>")
 
 	$("aside").css("left", "-200")
 	$("aside").animate({left: '0'})

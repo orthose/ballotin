@@ -12,6 +12,11 @@ function activateBrowsingBar(num, voter) {
   for (let i = 3; i <= 6; i++) {
     $($("aside button")[i]).prop('onclick', null).off('click');
   }
+  // Inviter les participant
+  $($("aside button")[2]).on("click", function() {
+    inviteAll(num)	
+    $(this).attr("disabled", "")
+  })
   // Permettre l'accès rapide au vote
   $($("aside button")[3]).on("click", function() {
     voteBallotPage(num, voter)
@@ -472,3 +477,32 @@ function checkToken() {
 
 	return bool
 }
+
+// Invite les participants
+function inviteAll(code) {
+	let voters = []
+
+	// On récupère les participants
+	$(".voters").each(
+		function(){
+			const val = $(this).val()
+			voters.push(val)
+		}
+	)
+	
+	// On envoie les mails
+	$.ajax({
+      method: "GET",
+      url: "/ballotin/php/inviteAll.php",
+      dataType: "json",
+      data: {"voters": voters, "code": code}
+    }).done(function(res) {
+      if (!res) {
+        $("#boxFooter").html("<p class='error'> Erreur lors de l'invitation des participants. </p>")
+      }
+    }).fail(function(e) {
+      console.log("Error: InviteAll")
+      console.log(e)
+    })
+}
+
