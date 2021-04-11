@@ -60,7 +60,7 @@ function createBallotAjax(tag) {
       }
     }).done(function(num) {
       // Afficher le numéro de scrutin
-      $("#boxFooter").html("<p>Le numéro de votre scrutin est : <b>"+num+"</b></p>")
+      $("#boxFooter").html("<p class='good'>Le numéro de votre scrutin est : <b>"+num+"</b></p>")
       // Permettre l'accès rapide au vote
       $($("aside button")[2]).attr("onClick", "voteBallotPage("+num+", '"+organiser+"')")
     }).fail(function(e) {
@@ -264,8 +264,6 @@ function authenticateAjax() {
    	// L'authentification a échouée
    	if (!res) {
 		  $("#boxFooter").html("<p class='error'> Mauvais login ou mot de passe ! <p>")
-		  $("#boxFooter").css("color", "rgb(220, 0, 0)")
-		  $("#boxFooter").css("font-size", "2em")
    	}
   }).fail(function(e) {
     console.log("Error: authenticateAjax")

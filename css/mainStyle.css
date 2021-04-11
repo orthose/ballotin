@@ -113,6 +113,16 @@ body > main {
 	height: 10%;
 }
 
+.error {
+	color: rgb(220, 0, 0);
+	font-size: 2em;
+}
+
+.good{
+	color: rgb(0, 220, 0);
+	font-size: 2em;
+}
+
 /*---------- Footer ----------*/
 
 body > footer {
