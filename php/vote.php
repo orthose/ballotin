@@ -15,12 +15,7 @@ if ($res["voters"][$voter] > 0) {
 	$res["voters"][$voter] -= 1;
 
 	// Enregistrement du choix de vote
-	if (isset($res["results"]) && isset($res["results"][$voter])) {
-		array_push($res["results"][$voter], $option);
-	}
-	else {
-		$res["results"][$voter] = array($option);
-	}
+	array_push($res["results"], $option);
 
 	// Enregistrement dans le fichier
 	file_put_contents($file, json_encode($res, JSON_PRETTY_PRINT));

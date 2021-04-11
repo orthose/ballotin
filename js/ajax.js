@@ -210,7 +210,6 @@ function voteAjax(num, voter) {
 
 	// Récupération du choix de vote
 	const option = $("input[name='options']:checked").val()
-	console.log(option)
 	if (option !== undefined) {
 		$.ajax({
 			method: "GET",
