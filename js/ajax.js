@@ -5,6 +5,36 @@
   Contenu: Appels Ajax
 ***********************************/
 
+// Active les boutons de la barre de navigation
+function activateBrowsingBar(num, voter) {
+  // Suppression des évènements enregistrés précédemment
+  // pour certains boutons
+  for (let i = 3; i <= 6; i++) {
+    $($("aside button")[i]).prop('onclick', null).off('click');
+  }
+  // Permettre l'accès rapide au vote
+  $($("aside button")[3]).on("click", function() {
+    voteBallotPage(num, voter)
+    $(this).attr("disabled", "")
+  })
+  // Bouton des résultats de vote et taux de participation
+  $($("aside button")[4]).on("click", function() {
+    resultsBallotAjax(num)
+  })
+  // Fermeture du scrutin
+  $($("aside button")[5]).on("click", function() {
+    closeBallotAjax(num)
+    $(this).attr("disabled", "")
+    $("#boxFooter").html("<p> Fermeture du scrutin "+num+" réussie. </p>")
+  })
+  // Suppression du scrutin
+  $($("aside button")[6]).on("click", function() {
+    removeBallotAjax(num)
+    $(this).attr("disabled", "")
+    $("#boxFooter").html("<p> Suppression du scrutin "+num+" réussie. </p>")
+  })
+}
+
 // Crée un fichier de scrutin sur le serveur
 function createBallotAjax(tag) {
 	// Récupération des options
@@ -62,32 +92,9 @@ function createBallotAjax(tag) {
       // Afficher le numéro de scrutin
       $("#boxFooter").html("<p>Le numéro de votre scrutin est : <b>"+num+"</b></p>")
 
-      // Suppression des évènements enregistrés précédemment
-      // pour certains boutons
-      for (let i = 3; i <= 6; i++) {
-        $($("aside button")[i]).prop('onclick', null).off('click');
-      }
-      // Permettre l'accès rapide au vote
-      $($("aside button")[3]).on("click", function() {
-        voteBallotPage(num, organiser)
-        $(this).attr("disabled", "")
-      })
-      // Bouton des résultats de vote et taux de participation
-      $($("aside button")[4]).on("click", function() {
-        resultsBallotAjax(num)
-      })
-      // Fermeture du scrutin
-      $($("aside button")[5]).on("click", function() {
-        closeBallotAjax(num)
-        $(this).attr("disabled", "")
-        $("#boxFooter").html("<p> Fermeture du scrutin "+num+" réussie. </p>")
-      })
-      // Suppression du scrutin
-      $($("aside button")[6]).on("click", function() {
-        removeBallotAjax(num)
-        $(this).attr("disabled", "")
-        $("#boxFooter").html("<p> Suppression du scrutin "+num+" réussie. </p>")
-      })
+      // Activation de la barre de navigation
+      activateBrowsingBar(num, organiser)
+
     }).fail(function(e) {
       console.log("Error: createBallotAjax")
       console.log(e)

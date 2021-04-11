@@ -31,7 +31,8 @@ function authenticate_button() {
 }
 
 // mode: true -> voter; false -> manager
-function template_vote_button(txt_b1, txt_b2, mode) {
+// fpage: fonction d'affichage de la page
+function template_vote_button(txt_b1, txt_b2, mode, fpage) {
 	$("#boxMain").append("Code de scrutin :")
 	$("#boxMain").append("<br>")
 	const $vote = $("<input>").attr("type", "text")
@@ -48,7 +49,7 @@ function template_vote_button(txt_b1, txt_b2, mode) {
 		const num = $("#numBallot").val()
 		const voter = $("#email").val()
 		if(authenticateAjax() && checkBallotAjax(num)) {
-			voteBallotPage(num, voter)
+			fpage(num, voter)
 		}
 	})
 
@@ -63,19 +64,41 @@ function template_vote_button(txt_b1, txt_b2, mode) {
 function vote_button() {
 	const txt_b1 = "Recherche de mes scrutins"
 	const txt_b2 = "Voter"
-	template_vote_button(txt_b1, txt_b2, true)
+	template_vote_button(txt_b1, txt_b2, true, function(num, voter) {
+		voteBallotPage(num, voter)
+		// Affichage et activation de la barre de navigation
+		browsingBar(voter)
+		activateBrowsingBar(num, voter)
+		// Paramétrage de la bar de navigation
+		$($("aside button")[0]).attr("disabled", "")
+		$($("aside button")[1]).attr("disabled", "")
+		$($("aside button")[2]).attr("disabled", "")
+		$($("aside button")[3]).attr("disabled", "")
+		$($("aside button")[5]).attr("disabled", "")
+		$($("aside button")[6]).attr("disabled", "")
+	})
 }
 
 function manage_button() {
 	const txt_b1 = "Recherche de scrutins à administrer"
 	const txt_b2 = "Administrer ce scrutin"
-	template_vote_button(txt_b1, txt_b2, false)
+	template_vote_button(txt_b1, txt_b2, false, function(num, voter) {
+		voteBallotPage(num, voter)
+		// Affichage et activation de la barre de navigation
+		browsingBar(voter)
+		activateBrowsingBar(num, voter)
+		// Paramétrage de la bar de navigation
+		$($("aside button")[0]).attr("disabled", "")
+		$($("aside button")[3]).attr("disabled", "")
+		//On enlève le bouton de vote
+		$("#boxMain button").remove()
+	})
 }
 
 function create_button() {
 	const $apply = $("<button>").on("click", function() {
-		if (true/*authenticateAjax()*/) {
-			createBallot($("#email").val())
+		if (authenticateAjax()) {
+			createBallotPage($("#email").val())
 		}
 	})
 	$apply.append("Créer un scrutin")

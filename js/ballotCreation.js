@@ -9,8 +9,8 @@
 // selectListVotersAjax et createBallotAjax
 let votersAnonymous = false;
 
-// Bar de navigation
-function manageBallot() {
+// Barre de navigation
+function browsingBar(organiser) {
 
 	// L'évènement des boutons utilisant le numéro de scrutin
 	// est changé par la suite lorsqu'on crée le scrutin
@@ -19,7 +19,11 @@ function manageBallot() {
 	}
 
 	$("aside").html("<button onClick='createBallotAjax(this)'> Créer le scrutin </button>")
-	$("aside").append("<button> Nouveau scrutin </button>")
+	$newButton = $("<button>").append("Nouveau scrutin")
+	$newButton.on("click", function() {
+		createBallotPage(organiser)
+	})
+	$("aside").append($newButton)
 	$("aside").append("<button> Inviter les participants </button>")
 	$voteButton = $("<button>").append("Voter")
 	$voteButton.on("click", errorFunction)
@@ -40,14 +44,10 @@ function manageBallot() {
 	$("aside").css("visibility", "visible")
 }
 
-function createBallot(organiser_email) {
+function createBallotPage(organiser_email) {
 
-	// Affichage de la bar de navigation
-	manageBallot()
-	// Nouveau scrutin
-	$($("aside button")[1]).on("click", function() {
-		createBallot(organiser_email)
-	})
+	// Affichage de la barre de navigation
+	browsingBar(organiser_email)
 
 	// Nettoyage du footer
 	$("#boxFooter").html("")
