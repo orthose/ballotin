@@ -62,7 +62,7 @@ function createBallotAjax(tag) {
       // Afficher le numéro de scrutin
       $("#boxFooter").html("<p>Le numéro de votre scrutin est : <b>"+num+"</b></p>")
       // Permettre l'accès rapide au vote
-      $($("aside button")[2]).attr("onClick", "voteBallotPage("+num+", '"+organiser+"')")
+      $($("aside button")[3]).attr("onClick", "voteBallotPage("+num+", '"+organiser+"')")
     }).fail(function(e) {
       console.log("Error: createBallotAjax")
       console.log(e)
