@@ -88,7 +88,12 @@ function createBallotAjax(tag) {
     	 "options": options,
     	 "voters": voters
       }
-    }).done(function(num) {
+    }).done(function(res) {
+      const num = res["numBallot"]
+      const privkey = res["privkey"]
+      // Enregistrement de la clé privée en local
+      localStorage.setItem("privkey", privkey)
+
       // Afficher le numéro de scrutin
       $("#boxFooter").html("<p class='good'>Le numéro de votre scrutin est : <b>"+num+"</b></p>")
 
@@ -217,6 +222,8 @@ function getBallotAjax(num) {
     dataType: "json",
     data: {"numBallot": num}
   }).done(function(ballot) {
+    // Enregistrement de la clé publique
+    localStorage.setItem("pubkey", ballot["pubkey"])
     // Remplissage de la page de vote
     $("textarea").text(ballot["question"])
     ballot["options"].forEach(function(x) {
@@ -238,10 +245,31 @@ function getBallotAjax(num) {
 // Ferme un scrutin dont numéro valide
 // closeBallot.php ne renvoie rien
 function closeBallotAjax(num) {
+  // Pour renvoyer les résultats décryptés
+  function pushResultsAjax(arrayDecrypted) {
+    $.ajax({
+      method: "GET",
+      url: "/ballotin/php/pushResultsBallot.php",
+      data: {
+        "numBallot": num,
+        "results": arrayDecrypted
+      }
+    }).fail(function(e) {
+      console.log("Error: pushResultsAjax")
+      console.log(e)
+    })
+  }
+
   $.ajax({
     method: "GET",
     url: "/ballotin/php/closeBallot.php",
+    dataType: "json",
     data: {"numBallot": num}
+  }).done(function(array) {
+    // Décryptage des résultats
+    arrayDecrypted = array.map(decrypt)
+    // Enregistrement des résultats
+    pushResultsAjax(arrayDecrypted)
   }).fail(function(e) {
     console.log("Error: closeBallotAjax")
     console.log(e)
@@ -308,7 +336,7 @@ function voteAjax(num, voter) {
       data: {
         "numBallot": num,
         "voter": voter,
-        "option": option
+        "option": crypt(option)
       }
     }).done(function(res) {
       if (res[0]) {
@@ -381,17 +409,16 @@ function createUserAjax(override) {
   }).done(function(res) {
 		//console.log("res createUser")
   	if (res === 0) {
-		if(override) {
-			//console.log("override")
-			window.location.assign("index.php?passwordChanged=true")
-		} else {
-			//console.log("accountCreated")
-			window.location.assign("index.php?accountCreated=true")
-		}
+		  if(override) {
+			 //console.log("override")
+			 window.location.assign("index.php?passwordChanged=true")
+		  } else {
+        //console.log("accountCreated")
+        window.location.assign("index.php?accountCreated=true")
+		  }
   	}
-   	else if (res === -1) {		
-	        $("#boxFooter").html("<p class='error'> Mot de passe trop court, la longueur doit au moins être de 8 caractères. </p>")
-
+   	else if (res === -1) {
+      $("#boxFooter").html("<p class='error'> Mot de passe trop court, la longueur doit au moins être de 8 caractères. </p>")
    	}
    	else if (res === -2) {
    		$("#boxFooter").html("<p class='error'> Le format du mail est invalide. </p>")
@@ -400,7 +427,7 @@ function createUserAjax(override) {
    		$("#boxFooter").html("<p class='error'> Le compte existe déja. </p>")		
    	}
    	else {
-		$("#boxFooter").html("<p class='error'> Une erreur indéfinie a eu lieu. </p>")		
+		  $("#boxFooter").html("<p class='error'> Une erreur indéfinie a eu lieu. </p>")		
    	}
   }).fail(function(e) {
     console.log("Error: createUserAjax")

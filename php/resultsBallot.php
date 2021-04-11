@@ -50,7 +50,12 @@ if ($closed) {
 	}
 	// On effectue le dépouillement
 	foreach ($data["results"] as $option) {
-		$res["results"][$option] += 1;
+		// Test nécessaire dans le cas du cryptage
+		// si l'organisateur n'a pas encore fermé le scrutin
+		// mais que tous les votants ont dépensé leur vote
+		if (isset($res["results"][$option])) {
+			$res["results"][$option] += 1;
+		}
 	}
 }
 

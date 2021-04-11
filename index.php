@@ -33,6 +33,8 @@
   
   <!-- JAVASCRIPT -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/jsencrypt.min.js"></script>
+  <script src="js/cryptActions.js"></script>
   <script src="js/ballotCreation.js"></script>
   <script src="js/ballotVote.js"></script>
   <script src="js/mainActions.js"></script>

@@ -23,4 +23,7 @@ else if (is_array($res["voters"])) {
 // Enregistrement du fichier
 file_put_contents($file, json_encode($res, JSON_PRETTY_PRINT));
 
+// On renvoie les résultats pour le décryptage
+echo json_encode($res["results"]);
+
 ?>
