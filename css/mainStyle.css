@@ -67,6 +67,39 @@ body > main {
 	margin-bottom:100px;
 }
 
+#numberTable {
+	border-collapse: collapse;
+	text-align: center;
+}
+
+#numberTable td {
+	border: 1px solid white;
+	color: white;
+}
+
+#numberTable .number:hover {
+	background: rgb(70, 120, 255);
+}
+
+
+#numberTable td > button {
+	padding: 0;
+	margin: 0;
+	background: none;
+	color: white;
+	width: 100%;
+}
+
+#numberTable td > button:hover {
+	background: none;
+}
+
+#numberTable th {
+	color: rgb(70, 120, 255);
+	background: white;
+	width: 30%;
+}
+
 /*---------- Box ----------*/
 
 #box {
@@ -113,17 +146,29 @@ body > main {
 	height: 10%;
 }
 
+.error {
+	color: rgb(220, 0, 0);
+	font-size: 2em;
+}
+
+.good{
+	color: rgb(0, 220, 0);
+	font-size: 2em;
+}
+
 /*---------- Footer ----------*/
 
 body > footer {
 	position: absolute;
-    bottom: 0;
+    	bottom: 0;
 	left: 0;
 	width: 100%;
 	border-top: 3px solid rgb(0,100,150);
 	background: rgb(0,150,255);
 	height: 70px;
 	text-align: center;
+	color: white;
+	font-weight: bold;
 }
 
 @media all and (max-width: 1280px)
