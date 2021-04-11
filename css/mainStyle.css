@@ -67,22 +67,22 @@ body > main {
 	margin-bottom:100px;
 }
 
-table {
+#numberTable {
 	border-collapse: collapse;
 	text-align: center;
 }
 
-td {
+#numberTable td {
 	border: 1px solid white;
 	color: white;
 }
 
-.number:hover {
+#numberTable .number:hover {
 	background: rgb(70, 120, 255);
 }
 
 
-#box td > button {
+#numberTable #box td > button {
 	padding: 0;
 	margin: 0;
 	background: none;
@@ -90,11 +90,11 @@ td {
 	width: 100%;
 }
 
-#box td > button:hover {
+#numberTable #box td > button:hover {
 	background: none;
 }
 
-th {
+#numberTable th {
 	color: rgb(70, 120, 255);
 	background: white;
 	width: 30%;
