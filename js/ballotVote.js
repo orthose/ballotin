@@ -42,7 +42,9 @@ function voteBallotPage(num, voter) {
 	$("#boxMain").append(choix)
 	
 	$voteButton = $("<button>").text("Voter !")
-	$voteButton.attr("onClick", "voteAjax("+num+", '"+voter+"')")
+	$voteButton.on("click", function() {
+		voteAjax(num, voter)
+	})
 	$("#boxMain").append($voteButton)
 
 	// Complétion des champs du scrutin par appel ajax

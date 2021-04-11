@@ -37,15 +37,20 @@ function template_vote_button(txt_b1, txt_b2, mode) {
 	const $vote = $("<input>").attr("type", "text")
 	$vote.attr("id", "numBallot")
 	$("#boxMain").append($vote)
-	const $search_vote = $("<button>").attr("onClick", "searchBallotAjax("+mode+")")
+	const $search_vote = $("<button>").on("click", function() {
+		searchBallotAjax(mode)
+	})
 	$search_vote.append(txt_b1)
 	$("#boxMain").append($search_vote)
 	$("#boxMain").append("<br>")
 
-	const $apply = $("<button>").attr("onClick", 
-		`const num = $("#numBallot").val()
+	const $apply = $("<button>").on("click", function() {
+		const num = $("#numBallot").val()
 		const voter = $("#email").val()
-		if(authenticateAjax() && checkBallotAjax(num)) {voteBallotPage(num, voter)}`)
+		if(authenticateAjax() && checkBallotAjax(num)) {
+			voteBallotPage(num, voter)
+		}
+	})
 
 	$apply.append(txt_b2)
 	$("#boxMain").append($apply)
@@ -68,8 +73,11 @@ function manage_button() {
 }
 
 function create_button() {
-	const $apply = $("<button>").attr("onClick",
-	 "if (authenticateAjax()) {createBallot($('#email').val())}")
+	const $apply = $("<button>").on("click", function() {
+		if (authenticateAjax()) {
+			createBallot($("#email").val())
+		}
+	})
 	$apply.append("Créer un scrutin")
 	
 	$("#boxMain").append($apply)

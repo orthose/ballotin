@@ -14,7 +14,13 @@ function manageBallot() {
 	$("aside").html("<button onClick='createBallotAjax(this)'> Créer le scrutin </button>")
 	$("aside").append("<button> Nouveau scrutin </button>")
 	$("aside").append("<button> Inviter les participants </button>")
-	$("aside").append("<button> Voter </button>")
+	// L'évènement du bouton de vote est changé par la suite
+	// lorsqu'on crée le scrutin
+	$voteButton = $("<button>").append("Voter")
+	$voteButton.on("click", function() {
+		$('#boxFooter').html("<p class='error'> Veuillez créer un scrutin. </p>")
+	})
+	$("aside").append($voteButton)
 	$("aside").append("<button> Afficher la participation </button>")
 	$("aside").append("<button> Fermer le scrutin </button>")
 	$("aside").append("<button> Détruire le scrutin </button>")
@@ -29,7 +35,10 @@ function createBallot(organiser_email) {
 
 	// Affichage de la bar de navigation
 	manageBallot()
-	$($("aside button")[1]).attr("onClick", "createBallot('"+organiser_email+"')") 
+	// Nouveau scrutin
+	$($("aside button")[1]).on("click", function() {
+		createBallot(organiser_email)
+	})
 
 	// Nettoyage du footer
 	$("#boxFooter").html("")
