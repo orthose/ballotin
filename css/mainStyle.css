@@ -82,7 +82,7 @@ body > main {
 }
 
 
-#numberTable #box td > button {
+#numberTable td > button {
 	padding: 0;
 	margin: 0;
 	background: none;
@@ -90,7 +90,7 @@ body > main {
 	width: 100%;
 }
 
-#numberTable #box td > button:hover {
+#numberTable td > button:hover {
 	background: none;
 }
 
