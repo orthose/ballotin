@@ -67,6 +67,39 @@ body > main {
 	margin-bottom:100px;
 }
 
+table {
+	border-collapse: collapse;
+	text-align: center;
+}
+
+td {
+	border: 1px solid white;
+	color: white;
+}
+
+.number:hover {
+	background: rgb(70, 120, 255);
+}
+
+
+#box td > button {
+	padding: 0;
+	margin: 0;
+	background: none;
+	color: white;
+	width: 100%;
+}
+
+#box td > button:hover {
+	background: none;
+}
+
+th {
+	color: rgb(70, 120, 255);
+	background: white;
+	width: 30%;
+}
+
 /*---------- Box ----------*/
 
 #box {
@@ -127,13 +160,15 @@ body > main {
 
 body > footer {
 	position: absolute;
-    bottom: 0;
+    	bottom: 0;
 	left: 0;
 	width: 100%;
 	border-top: 3px solid rgb(0,100,150);
 	background: rgb(0,150,255);
 	height: 70px;
 	text-align: center;
+	color: white;
+	font-weight: bold;
 }
 
 @media all and (max-width: 1280px)

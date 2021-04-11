@@ -137,7 +137,7 @@ function searchBallotAjax(mode) {
     }).done(function(array) {
       $table = $("<table>").append("<tr><th> Organisateur </th><th> Numéro de scrutin </th></tr>")
       array.forEach(function([org, num]) {
-        $table.append("<tr><td>"+org+"</td><td>"+num+"</td></tr>")
+        $table.append("<tr><td>"+org+"</td><td class='number'><button onClick='$(\"#numBallot\").val("+num+")'>"+num+"</button></td></tr>")
       })
       $("#boxFooter").html($table)
     }).fail(function(e) {

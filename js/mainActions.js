@@ -39,6 +39,7 @@ function template_vote_button(txt_b1, txt_b2, mode) {
 	$("#boxMain").append($vote)
 	const $search_vote = $("<button>").attr("onClick", "searchBallotAjax("+mode+")")
 	$search_vote.append(txt_b1)
+	$("#boxMain").append("<br>")
 	$("#boxMain").append($search_vote)
 	$("#boxMain").append("<br>")
 

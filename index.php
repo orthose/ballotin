@@ -8,6 +8,8 @@
 	// Regarder si l'utilisateur est déjà venu
 	if(isset($_GET['accountCreated'])) {
 		$message = "Merci d'avoir créée un compte, vous pouvez désormais utiliser toutes les fonctionnalités du site !";
+	} else if(isset($_GET['passwordChanged'])) {
+		$message = "Votre mot de passe a été changé, vous pouvez désormais ré-utiliser toutes les fonctionnalités du site !";
 	} else if(isset($_COOKIE['seen'])) {
 		$message = "Heureux de vous revoir sur Ballotin un site de vote anonyme crypté en ligne !";
 	} 
@@ -27,6 +29,7 @@
 <head>
   <meta charset="utf-8">
   <title>Ballotin</title>
+  <link rel="icon" type="image/png" href="resources/images/logo.png">
   
   <!-- JAVASCRIPT -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
