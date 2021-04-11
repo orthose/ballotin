@@ -1,6 +1,6 @@
 <?php
 
-require("libSearchBallot.php");
+require("libBallot.php");
 
 // Deux modes de recherche possible
 // $_REQUEST["mode"] = true -> recherche de scrutins pour lesquels voter
@@ -9,10 +9,10 @@ require("libSearchBallot.php");
 $res = array();
 // Parcours de tous les numéros de scrutin et filtrage
 foreach (searchAllBallot() as $num) {
-	$data = json_decode(file_get_contents(path."ballot".$num.".json"), true);
+	$data = json_decode(file_get_contents(path.$num.format), true);
 	// Scrutins pour lesquels voter
 	if ($_REQUEST["mode"] 
-		&& ($data["voters"] === "all"
+		&& ($data["voters"] === "all" || $data["voters"] === null
 			|| in_array($_REQUEST["organiser"], array_keys($data["voters"]))
 		)
 	) {

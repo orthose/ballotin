@@ -61,10 +61,32 @@ function createBallotAjax(tag) {
     }).done(function(num) {
       // Afficher le numéro de scrutin
       $("#boxFooter").html("<p>Le numéro de votre scrutin est : <b>"+num+"</b></p>")
+
+      // Suppression des évènements enregistrés précédemment
+      // pour certains boutons
+      for (let i = 3; i <= 6; i++) {
+        $($("aside button")[i]).prop('onclick', null).off('click');
+      }
       // Permettre l'accès rapide au vote
       $($("aside button")[3]).on("click", function() {
         voteBallotPage(num, organiser)
         $(this).attr("disabled", "")
+      })
+      // Bouton des résultats de vote et taux de participation
+      $($("aside button")[4]).on("click", function() {
+        resultsBallotAjax(num)
+      })
+      // Fermeture du scrutin
+      $($("aside button")[5]).on("click", function() {
+        closeBallotAjax(num)
+        $(this).attr("disabled", "")
+        $("#boxFooter").html("<p> Fermeture du scrutin "+num+" réussie. </p>")
+      })
+      // Suppression du scrutin
+      $($("aside button")[6]).on("click", function() {
+        removeBallotAjax(num)
+        $(this).attr("disabled", "")
+        $("#boxFooter").html("<p> Suppression du scrutin "+num+" réussie. </p>")
       })
     }).fail(function(e) {
       console.log("Error: createBallotAjax")
@@ -206,6 +228,64 @@ function getBallotAjax(num) {
   })
 }
 
+// Ferme un scrutin dont numéro valide
+// closeBallot.php ne renvoie rien
+function closeBallotAjax(num) {
+  $.ajax({
+    method: "GET",
+    url: "/ballotin/php/closeBallot.php",
+    data: {"numBallot": num}
+  }).fail(function(e) {
+    console.log("Error: closeBallotAjax")
+    console.log(e)
+  })
+}
+
+// Permet d'obtenir la participation et les
+// résultats d'un scrutin dont numéro valide
+function resultsBallotAjax(num) {
+  $.ajax({
+    method: "GET",
+    url: "/ballotin/php/resultsBallot.php",
+    dataType: "json",
+    data: {"numBallot": num}
+  }).done(function(res) {
+    // Affichage des résultats
+    let rate = (res["entries"] / res["voters"]) * 100.
+    $table = $("<table>")
+    $table.append("<tr> <th> Nombre de participation(s) </th><td> "+res["entries"]+" </td></tr>")
+    $table.append("<tr> <th> Pourcentage de participation </th><td> "+rate+"% </td></tr>")
+    if (res["results"] === []) {
+      $table.append("<tr><td> Le scrutin n'est pas encore clos. </td></tr>")
+    }
+    // Affichage de tous les résultats pour chaque option
+    else {
+      for (let option in res["results"]) {
+        let absolute = res["results"][option]
+        rate = (absolute / res["voters"]) * 100.
+        $table.append("<tr> <th> "+option+" </th><td> "+absolute+" vote(s) soit "+rate+"% </td></tr>")
+      }
+    }
+    $("#boxFooter").html($table)
+  }).fail(function(e) {
+    console.log("Error: resultsBallotAjax")
+    console.log(e)
+  })
+}
+
+// Suppression d'un scrutin dont numéro valide
+// Ne renvoie rien
+function removeBallotAjax(num) {
+  $.ajax({
+    method: "GET",
+    url: "/ballotin/php/removeBallot.php",
+    data: {"numBallot": num}
+  }).fail(function(e) {
+    console.log("Error: removeBallotAjax")
+    console.log(e)
+  })
+}
+
 // Permet de voter à un scrutin
 // num : numéro de scrutin valide
 // voter : électeur désirant voter
@@ -214,32 +294,34 @@ function voteAjax(num, voter) {
 	// Récupération du choix de vote
 	const option = $("input[name='options']:checked").val()
 	if (option !== undefined) {
-		$.ajax({
-			method: "GET",
-			url: "/ballotin/php/vote.php",
-			dataType: "json",
-			data: {
-				"numBallot": num,
-				"voter": voter,
-				"option": option
-			}
-		}).done(function(res) {
-			if (res[0]) {
-				$("#boxFooter").html("<p> Votre vote a bien été pris en compte. </p>")
-  		// On disabled le bouton de vote
-  		if (res[1] === 0) {
-  			$("#boxMain button").attr("disabled", "")
-  		}
-  	}
-  	else {
-  		$("#boxFooter").html("<p class='error'> Votre vote n'a pas été pris en compte ! </p>")
-  	}
-  	$("#boxFooter").append("<p> Il vous reste "+res[1]+" procuration(s) pour ce scrutin. </p>")
-  }).fail(function(e) {
-  	console.log("Error: voteAjax")
-  	console.log(e)
-  })
-}
+    $.ajax({
+      method: "GET",
+      url: "/ballotin/php/vote.php",
+      dataType: "json",
+      data: {
+        "numBallot": num,
+        "voter": voter,
+        "option": option
+      }
+    }).done(function(res) {
+      if (res[0]) {
+        $("#boxFooter").html("<p> Votre vote a bien été pris en compte. </p>")
+  		    // On disabled le bouton de vote
+  		    if (res[1] === 0) {
+            $("#boxMain button").attr("disabled", "")
+          }
+        }
+        else {
+          // On disabled le bouton de vote
+          $("#boxMain button").attr("disabled", "")
+          $("#boxFooter").html("<p class='error'> Votre vote n'a pas été pris en compte ! </p>")
+        }
+        $("#boxFooter").append("<p> Il vous reste "+res[1]+" procuration(s) pour ce scrutin. </p>")
+      }).fail(function(e) {
+        console.log("Error: voteAjax")
+        console.log(e)
+    })
+  }
 }
 
 // Vérifie que l'utilisateur est valide
