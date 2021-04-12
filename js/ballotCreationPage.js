@@ -1,49 +1,16 @@
-/**********************************
+/*********************************************
   Projet Programmation Web
   L3 Info Université Paris-Saclay
   Auteurs: Maxime Vincent & Baptiste Maquet
   Contenu: Interface de création d'un scrutin
-***********************************/
+**********************************************/
 
 // Nécessaire pour communication entre
 // selectListVotersAjax et createBallotAjax
 let votersAnonymous = false;
 
-// Barre de navigation
-function browsingBar(organiser) {
-
-	// L'évènement des boutons utilisant le numéro de scrutin
-	// est changé par la suite lorsqu'on crée le scrutin
-	const errorFunction = function() {
-		$('#boxFooter').html("<p class='error'> Veuillez créer un scrutin. </p>")
-	}
-
-	$("aside").html("<button onClick='createBallotAjax(this)'> Créer le scrutin </button>")
-	$newButton = $("<button>").append("Nouveau scrutin")
-	$newButton.on("click", function() {
-		createBallotPage(organiser)
-	})
-	$("aside").append($newButton)
-	$("aside").append("<button> Inviter les participants </button>")
-	$voteButton = $("<button>").append("Voter")
-	$voteButton.on("click", errorFunction)
-	$("aside").append($voteButton)
-	$statsButton = $("<button>").append("Afficher la participation")
-	$statsButton.on("click", errorFunction)
-	$("aside").append($statsButton)
-	$closeButton = $("<button>").append("Fermer le scrutin")
-	$closeButton.on("click", errorFunction)
-	$("aside").append($closeButton)
-	$removeButton = $("<button>").append("Détruire le scrutin")
-	$removeButton.on("click", errorFunction)
-	$("aside").append($removeButton)
-	$("aside").append("<button onClick='window.location.assign(\"index.php\")'> Exit </button>")
-
-	$("aside").css("left", "-200")
-	$("aside").animate({left: '0'})
-	$("aside").css("visibility", "visible")
-}
-
+// Création de l'interface de la page de création
+// de scrutin
 function createBallotPage(organiser_email) {
 
 	// Affichage de la barre de navigation

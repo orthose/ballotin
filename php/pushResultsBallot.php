@@ -8,7 +8,12 @@ $file = path.$_REQUEST["numBallot"].format;
 $res = json_decode(file_get_contents($file), true);
 
 // Écrasement du champ results
-$res["results"] = $_REQUEST["results"];
+if ($_REQUEST["results"] === null) {
+	$res["results"] = array();
+}
+else {
+	$res["results"] = $_REQUEST["results"];
+}
 
 // Enregistrement du fichier
 file_put_contents($file, json_encode($res, JSON_PRETTY_PRINT));

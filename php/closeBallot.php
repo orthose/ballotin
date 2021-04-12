@@ -8,7 +8,7 @@ $file = path.$_REQUEST["numBallot"].format;
 $res = json_decode(file_get_contents($file), true);
 
 // Cas de la liste Anonyme
-if ($res["voters"] == "all") {
+if ($res["voters"] === "all") {
 	$res["voters"] = null;
 }
 // Cas général

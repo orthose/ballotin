@@ -34,13 +34,16 @@
   <!-- JAVASCRIPT -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/jsencrypt.min.js"></script>
+  <script src="js/browsingBar.js"></script>
   <script src="js/cryptActions.js"></script>
-  <script src="js/ballotCreation.js"></script>
-  <script src="js/ballotVote.js"></script>
+  <script src="js/ballotCreationActions.js"></script>
+  <script src="js/ballotManagementActions.js"></script>
+  <script src="js/userSystemActions.js"></script>
+  <script src="js/ballotCreationPage.js"></script>
+  <script src="js/ballotVotePage.js"></script>
   <script src="js/mainActions.js"></script>
   <script src="js/createAccount.js"></script>
   <script src="js/changePassword.js"></script>
-  <script src="js/ajax.js"></script>
   <!-- CSS -->
   <link href='css/mainStyle.css' rel='stylesheet'/>
   <link href='css/welcomeStyle.css' rel='stylesheet'/>
