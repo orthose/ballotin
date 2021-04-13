@@ -11,6 +11,12 @@ do {
 
 // On ajoute le champ des résultats au srutin
 $res = $_REQUEST;
+
+// Sanitize options
+foreach($res['options'] as $key => $data){
+     $res['options'][$key] = htmlspecialchars($res['options'][$key]);
+}
+
 $res["results"] = array();
 // Cas de la liste Anonyme
 if ($res["voters"] === "all") {
