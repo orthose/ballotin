@@ -47,7 +47,7 @@ function createBallotPage(organiser_email) {
 	// 3. Choix de réponse
 	const $options = $("<li>").append("<br>")
 	$options.append("<h3>Options :</h3>")
-	$options.append("<br>")
+
 	const $trashChoice = $("<button> - </button>").attr("onClick", "removeChoice(this)")
 	$trashChoice.attr("class", "trash")
 

@@ -54,14 +54,10 @@ aside button:hover {
 	margin-right: auto;
 }
 
-#box .trash {
+#box .trash, #box .add  {
 	width: 30px;
 	height: 30px;
-}
-
-#box .add {
-	width: 30px;	
-	height: 30px;
+	margin: 10;
 }
 
 #boxMain textarea {

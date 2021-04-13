@@ -10,6 +10,11 @@ do {
 } while(file_exists($file));
 
 $res = $_REQUEST;
+
+// Nettoyage des options pour éviter injection de script
+foreach ($res['options'] as $i => $option){
+     $res['options'][$i] = htmlspecialchars($option);
+}
 // On ajoute le champ des résultats au srutin
 $res["results"] = array();
 // On ajoute le champ indiquant si le scrutin est fermé

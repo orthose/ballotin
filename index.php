@@ -7,7 +7,7 @@
 	
 	// Regarder si l'utilisateur est déjà venu
 	if(isset($_GET['accountCreated'])) {
-		$message = "Merci d'avoir créée un compte, vous pouvez désormais utiliser toutes les fonctionnalités du site&nbsp;!";
+		$message = "Merci d'avoir créé un compte, vous pouvez désormais utiliser toutes les fonctionnalités du site&nbsp;!";
 	} else if(isset($_GET['passwordChanged'])) {
 		$message = "Votre mot de passe a été changé, vous pouvez désormais ré-utiliser toutes les fonctionnalités du site&nbsp;!";
 	} else if(isset($_COOKIE['seen'])) {
@@ -48,6 +48,7 @@
   <link href='css/mainStyle.css' rel='stylesheet'/>
   <link href='css/welcomeStyle.css' rel='stylesheet'/>
   <link href='css/createBallotStyle.css' rel='stylesheet'/>
+  <link href='css/managementStyle.css' rel='stylesheet'/>
 </head>
 <body>
 	<header> 

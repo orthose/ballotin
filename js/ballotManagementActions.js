@@ -147,7 +147,7 @@ function resultsBallotAjax(num) {
   }).done(function(res) {
     // Affichage des résultats
     let rate = (res["entries"] / res["voters"]) * 100.
-    $table = $("<table>")
+    $table = $("<table id='resultTable'>")
     $table.append("<tr> <th> Nombre de participation(s) </th><td> "+res["entries"]+" </td></tr>")
     $table.append("<tr> <th> Pourcentage de participation </th><td> "+rate+"% </td></tr>")
     if (res["results"] === []) {
