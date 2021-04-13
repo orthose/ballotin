@@ -15,7 +15,7 @@ function voteBallotPage(num, voter) {
 	$("#intro").html("<p> Allez voter&nbsp;! </p>")	
 	
 	// Boite principale
-	$("#boxMain").html("<h3> Électeu&nbsp;: </h3>")	
+	$("#boxMain").html("<h3> Électeur&nbsp;: </h3>")	
 	
 	let votant = $("<div>")
 	votant.append("<input type='text' readonly value='"+voter+"'>")

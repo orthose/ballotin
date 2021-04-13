@@ -8,6 +8,7 @@
 function createAccountPage() {
 	$("#boxFooter").html("")
 	$("aside").empty()
+	$("aside").css("left", "-210px")
 
 	$("#intro").html("Creér votre compte pour pouvoir utiliser la plateforme ballotin")
 

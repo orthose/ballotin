@@ -10,6 +10,19 @@ html, body {
 
 /*---------- Header ----------*/
 
+#reportBug {
+	border: none;
+	outline: none;
+	padding: 10px;
+	border-radius: 5px;
+	color: rgb(0,130,245);
+	font-weight: bold;
+}
+
+#reportBug:hover {
+	background: rgb(230, 230, 230);
+}
+
 body > header {
 	display: flex;
 	justify-content: space-around;

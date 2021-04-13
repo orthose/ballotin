@@ -20,6 +20,7 @@
 	}
 ?>
 
+// On sauvegarde l'id de session dans une variable globale
 <script type="text/javascript">
     	var sessionID ='<?= session_id();?>'
 </script>
@@ -53,11 +54,8 @@
 </head>
 <body>
 	<header> 
-		<p> </p>
+		<div><button onClick="bugReportPage()" id='reportBug'> Reporter un bogue </button></div>
 		<h1> <a href='index.php'> Ballotin </a> </h1>
-		<div>
-			<button onClick="bugReportPage()"> Reporter un bogue </button>
-		</div>
 		<div><button onClick="createAccountPage()" id="createAccount"> Créer un compte </button></div>
 	</header>
 	

@@ -7,6 +7,10 @@
 
 // Page de report de bogue
 function bugReportPage() {
+	$("#boxFooter").html("")
+	$("aside").empty()
+	$("aside").css("left", "-210px")
+
 	$("#boxMain").html(`<p style="text-align:justify"> 
 		Ce site étant un projet universitaire, 
 		tout report de bogue est le bienvenu.
