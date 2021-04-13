@@ -11,7 +11,7 @@ function checkUser($user) {
 
 $login = trim($_REQUEST["login"]);
 $passwd = trim($_REQUEST["passwd"]);
-$override = $_REQUEST["override"];
+$override = json_decode($_REQUEST["override"]);
 
 // Taille minimale du password = 8
 $pattern_passwd = "/[\w\s]{8}[\w\s]*/";
