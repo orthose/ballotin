@@ -9,9 +9,11 @@ do {
   $file = path.$number.format;
 } while(file_exists($file));
 
-// On ajoute le champ des résultats au srutin
 $res = $_REQUEST;
+// On ajoute le champ des résultats au srutin
 $res["results"] = array();
+// On ajoute le champ indiquant si le scrutin est fermé
+$res["closed"] = false;
 // Cas de la liste Anonyme
 if ($res["voters"] === "all") {
 	$res["registered"] = array();

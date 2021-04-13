@@ -11,6 +11,9 @@ unset($res["voters"]);
 if (isset($res["results"])) {
 	unset($res["results"]);
 }
+if (isset($res["registered"])) {
+	unset($res["registered"]);
+}
 echo json_encode($res);
 
 ?>

@@ -7,34 +7,42 @@ $file = path.$_REQUEST["numBallot"].format;
 $voter = $_REQUEST["voter"];
 $option = $_REQUEST["option"];
 
-// Renvoie le json du fichier correspondant à $_REQUEST["numBallot"]
-$res = json_decode(file_get_contents($file), true);
-// On met à jour le nombre de procurations
-// Cas de la liste Anonyme (tout le monde peut voter 1 fois)
-if ($res["voters"] === "all" && !in_array($voter, $res["registered"])) {
-	// L'électeur dépense son unique vote
-	array_push($res["registered"], $voter);
+// Renvoie le json du fichier cordatapondant à $_REQUEST["numBallot"]
+$data = json_decode(file_get_contents($file), true);
 
-	// Enregistrement du choix de vote
-	array_push($res["results"], $option);
+// On ne peut voter que si le scrutin est encore ouvert
+if (!$data["closed"]) {
+	// On met à jour le nombre de procurations
+	// Cas de la liste Anonyme (tout le monde peut voter 1 fois)
+	if ($data["voters"] === "all" && !in_array($voter, $data["registered"])) {
+		// L'électeur dépense son unique vote
+		array_push($data["registered"], $voter);
 
-	// Enregistrement dans le fichier
-	file_put_contents($file, json_encode($res, JSON_PRETTY_PRINT));
+		// Enregistrement du choix de vote
+		array_push($data["results"], $option);
 
-	echo json_encode(array(true, 0));
-}
-// Cas général
-else if ($res["voters"] !== "all" && $res["voters"] !== null && $res["voters"][$voter] > 0) {
-	// L'électeur dépense un vote
-	$res["voters"][$voter] -= 1;
+		// Enregistrement dans le fichier
+		file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
 
-	// Enregistrement du choix de vote
-	array_push($res["results"], $option);
+		echo json_encode(array(true, 0));
+	}
+	// Cas général
+	else if (is_array($data["voters"]) && $data["voters"][$voter] > 0) {
+		// L'électeur dépense un vote
+		$data["voters"][$voter] -= 1;
 
-	// Enregistrement dans le fichier
-	file_put_contents($file, json_encode($res, JSON_PRETTY_PRINT));
+		// Enregistrement du choix de vote
+		array_push($data["results"], $option);
 
-	echo json_encode(array(true, $res["voters"][$voter]));
+		// Enregistrement dans le fichier
+		file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
+
+		echo json_encode(array(true, $data["voters"][$voter]));
+	}
+	// L'électeur ne peut plus voter
+	else {
+		echo json_encode(array(false, 0));
+	}
 }
 // L'électeur ne peut plus voter
 else {

@@ -7,12 +7,8 @@ require("libBallot.php");
 $file = path.$_REQUEST["numBallot"].format;
 $res = json_decode(file_get_contents($file), true);
 
-// Cas de la liste Anonyme
-if ($res["voters"] === "all") {
-	$res["voters"] = null;
-}
-// Cas général
-else if (is_array($res["voters"])) {
+// Cas général (pas le cas de la liste Anonyme)
+if ($res["voters"] !== "all") {
 	// Mise à zéro de toutes les procurations
 	// Plus personne ne peut voter
 	foreach ($res["voters"] as $key => $value) {
@@ -20,10 +16,20 @@ else if (is_array($res["voters"])) {
 	}
 }
 
+// Le scrutin a-t-il déjà été fermé ?
+$yetClosed = false;
+if ($res["closed"]) {
+	$yetClosed = true;
+}
+// On ferme le scrutin
+else {
+	$res["closed"] = true;
+}
+
 // Enregistrement du fichier
 file_put_contents($file, json_encode($res, JSON_PRETTY_PRINT));
 
 // On renvoie les résultats pour le décryptage
-echo json_encode($res["results"]);
+echo json_encode(array($yetClosed, $res["results"]));
 
 ?>

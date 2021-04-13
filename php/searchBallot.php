@@ -12,7 +12,7 @@ foreach (searchAllBallot() as $num) {
 	$data = json_decode(file_get_contents(path.$num.format), true);
 	// Scrutins pour lesquels voter
 	if (json_decode($_REQUEST["mode"]) 
-		&& ($data["voters"] === "all" || $data["voters"] === null
+		&& ($data["voters"] === "all"
 			|| in_array($_REQUEST["organiser"], array_keys($data["voters"]))
 		)
 	) {

@@ -87,6 +87,10 @@ function getBallotAjax(num) {
       $label.append(x)
       $("#options").append($label)
     })
+    // Si le scrutin est fermé on ne peut plus le fermer
+    if (ballot["closed"]) { 
+      $($("aside button")[5]).attr("disabled", "")
+    }
   }).fail(function(e) {
     console.log("Error: getBallotAjax")
     console.log(e)
@@ -117,10 +121,15 @@ function closeBallotAjax(num) {
     dataType: "json",
     data: {"numBallot": num}
   }).done(function(array) {
-    // Décryptage des résultats
-    arrayDecrypted = array.map(decrypt)
-    // Enregistrement des résultats
-    pushResultsAjax(arrayDecrypted)
+    if (array[0]) {
+      $("#boxFooter").html("<p class='error'> Le scrutin a déjà été fermé. </p>")
+    }
+    else {
+      // Décryptage des résultats
+      arrayDecrypted = array[1].map(decrypt)
+      // Enregistrement des résultats
+      pushResultsAjax(arrayDecrypted)
+    }
   }).fail(function(e) {
     console.log("Error: closeBallotAjax")
     console.log(e)

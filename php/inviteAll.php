@@ -23,7 +23,7 @@ foreach ($voters as $voterEmail) {
 }
 
 $mail->Subject = 'Votre vote compte !';
-$mail->Body = "<p>Vous avez été inviter à voter à un scrutin, son code est</p> <strong>$code</strong>";
+$mail->Body = "<p>Vous avez été invité à voter à un scrutin, son code est</p> <strong>$code</strong>";
 $mail->IsHTML(true);
 
 if($mail->send()) {
