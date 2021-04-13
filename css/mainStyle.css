@@ -5,7 +5,7 @@ html {
 
 html, body {
 	margin:0;
-	padding:0;
+	padding :0;
 }
 
 /*---------- Header ----------*/
@@ -63,41 +63,8 @@ body > main {
 	display: flex;
 	align-items: center;	
 	width: 100%;
-	margin-top: 100px;
-	margin-bottom:100px;
-}
-
-#numberTable {
-	border-collapse: collapse;
-	text-align: center;
-}
-
-#numberTable td {
-	border: 1px solid white;
-	color: white;
-}
-
-#numberTable .number:hover {
-	background: rgb(70, 120, 255);
-}
-
-
-#numberTable td > button {
-	padding: 0;
-	margin: 0;
-	background: none;
-	color: white;
-	width: 100%;
-}
-
-#numberTable td > button:hover {
-	background: none;
-}
-
-#numberTable th {
-	color: rgb(70, 120, 255);
-	background: white;
-	width: 30%;
+	margin-top: 80px;
+	margin-bottom:80px;
 }
 
 /*---------- Box ----------*/
@@ -115,7 +82,7 @@ body > main {
 }
 
 #box > * {
-	padding: 20px;
+	padding: 10px;
 }
 
 #boxHeader {
@@ -138,6 +105,11 @@ body > main {
 #boxMain {
 	background: rgb(100, 150, 255);
 	height: 80%;
+}
+
+#boxMain h3 {
+	padding: 0;
+        margin: 0;
 }
 
 #boxFooter {

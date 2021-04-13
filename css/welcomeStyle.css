@@ -4,10 +4,8 @@
 }
 
 #box button {
-	margin: 30px;
+	margin: 10px;
 	padding: 5px;
-	/*width: 300px;
-	height: 100px;*/
 	border: none;
 	border-radius: 5px;
 	outline: none;
@@ -20,24 +18,4 @@
 
 #box button:hover {
 	background: white;
-}
-
-
-@media all and (max-width: 1280px)
-{	
-
-	/*#box button {
-		width: 200px;
-		height: 50px;
-		font-size: 1em;
-	}*/
-}
-
-@media all and (max-width: 800px)
-{	
-	
-	/*#box button {
-		width: 150px;
-		height: 50px;
-	}*/
 }
