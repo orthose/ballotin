@@ -8,4 +8,9 @@ Projet de Programmation Web L3 Informatique Université Paris-Saclay
 * Suppression de l'utilisateur inutile
 `htpasswd -D secret/passwd.txt dummy`
 * PHP doit avoir les droits en écriture
-`chmod 777 secret/`
+`chmod 777 secret/passwd.txt`
+
+* Création du fichier de report de bogue
+`touch secret/bug-report.txt`
+* PHP doit avoir les droits en écriture
+`chmod 777 secret/bug-report.txt`

@@ -39,6 +39,7 @@
   <script src="js/ballotCreationActions.js"></script>
   <script src="js/ballotManagementActions.js"></script>
   <script src="js/userSystemActions.js"></script>
+  <script src="js/bugReport.js"></script>
   <script src="js/ballotCreationPage.js"></script>
   <script src="js/ballotVotePage.js"></script>
   <script src="js/mainActions.js"></script>
@@ -53,7 +54,10 @@
 <body>
 	<header> 
 		<p> </p>
-		<h1> <a href='index.php'> Ballotin </a> </h1> 
+		<h1> <a href='index.php'> Ballotin </a> </h1>
+		<div>
+			<button onClick="bugReportPage()"> Reporter un bogue </button>
+		</div>
 		<div><button onClick="createAccountPage()" id="createAccount"> Créer un compte </button></div>
 	</header>
 	
