@@ -20,6 +20,8 @@ if (!$data["closed"]) {
 
 		// Enregistrement du choix de vote
 		array_push($data["results"], $option);
+		// Mélange des résultats
+		shuffle($data["results"]);
 
 		// Enregistrement dans le fichier
 		file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
@@ -33,6 +35,8 @@ if (!$data["closed"]) {
 
 		// Enregistrement du choix de vote
 		array_push($data["results"], $option);
+		// Mélange des résultats
+		shuffle($data["results"]);
 
 		// Enregistrement dans le fichier
 		file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
