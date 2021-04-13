@@ -32,7 +32,7 @@ function changePasswordPage(userEmail) {
 	$("#boxMain").append($("<br>"))
 	$("#boxMain").append($("<br>"))
 
-	$("#boxMain").append("Nouveau mot de passe :")
+	$("#boxMain").append("Nouveau mot de passe&nbsp;:")
 	$("#boxMain").append($("<br>"))
 	const $passwd = $("<input>").attr("type", "password")
 	$passwd.attr("id", "passwd")

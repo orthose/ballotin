@@ -7,15 +7,15 @@
 	
 	// Regarder si l'utilisateur est déjà venu
 	if(isset($_GET['accountCreated'])) {
-		$message = "Merci d'avoir créée un compte, vous pouvez désormais utiliser toutes les fonctionnalités du site !";
+		$message = "Merci d'avoir créée un compte, vous pouvez désormais utiliser toutes les fonctionnalités du site&nbsp;!";
 	} else if(isset($_GET['passwordChanged'])) {
-		$message = "Votre mot de passe a été changé, vous pouvez désormais ré-utiliser toutes les fonctionnalités du site !";
+		$message = "Votre mot de passe a été changé, vous pouvez désormais ré-utiliser toutes les fonctionnalités du site&nbsp;!";
 	} else if(isset($_COOKIE['seen'])) {
-		$message = "Heureux de vous revoir sur Ballotin un site de vote anonyme crypté en ligne !";
+		$message = "Heureux de vous revoir sur Ballotin un site de vote anonyme crypté en ligne&nbsp;!";
 	} 
 	// Enregistrer un cookie pour savoir si l'utilisateur est déjà venu
 	else {
-		$message = "Bonjour et bienvenue sur ballotin un site du vote anonyme crypté en ligne ! Créer votre compte pour pouvoir utiliser toutes ses fonctionnalités";		
+		$message = "Bonjour et bienvenue sur ballotin un site du vote anonyme crypté en ligne&nbsp;! Créer votre compte pour pouvoir utiliser toutes ses fonctionnalités";		
 		setcookie("seen", true);
 	}
 ?>
@@ -80,6 +80,7 @@
 	</main>
 	
 	<footer>
-		<p> Outil libre de droits -- Université Paris-Saclay @ 2021 </p>
+		<p> Outil libre de droits | Université Paris-Saclay @ 2021<br>
+		Concepteurs&nbsp;:&nbsp;Maxime Vincent & Baptiste Maquet </p>
 	</footer>
 </body>

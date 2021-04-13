@@ -6,7 +6,7 @@
 ***********************************/
 
 function authenticate_button() {
-	$("#boxMain").html("E-mail de l'électeur :")
+	$("#boxMain").html("E-mail de l'électeur&nbsp;:")
 	$("#boxMain").append($("<br>"))
 	const $email = $("<input>").attr("type", "text")
 	$email.attr("id", "email")
@@ -14,14 +14,14 @@ function authenticate_button() {
 	$("#boxMain").append($("<br>"))
 	$("#boxMain").append($("<br>"))
 
-	$("#boxMain").append("Mot de passe :")	
+	$("#boxMain").append("Mot de passe&nbsp;:")	
 	$("#boxMain").append($("<br>"))
 	const $passwd = $("<input>").attr("type", "password")
 	$passwd.attr("id", "passwd")
 	$("#boxMain").append($passwd)
 	$("#boxMain").append($("<br>"))
 	const $forgotten_passwd = $("<button>").attr("onClick", "sendMail()")
-	$forgotten_passwd.append("Mot de passe oublié ?")
+	$forgotten_passwd.append("Mot de passe oublié&nbsp;?")
 	$("#boxMain").append($forgotten_passwd)
 	$("#boxMain").append("<br>")
 	
@@ -33,7 +33,7 @@ function authenticate_button() {
 // mode: true -> voter; false -> manager
 // fpage: fonction d'affichage de la page
 function template_vote_button(txt_b1, txt_b2, mode, fpage) {
-	$("#boxMain").append("Code de scrutin :")
+	$("#boxMain").append("Code de scrutin&nbsp;:")
 	$("#boxMain").append("<br>")
 	const $vote = $("<input>").attr("type", "text")
 	$vote.attr("id", "numBallot")

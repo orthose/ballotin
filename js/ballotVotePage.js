@@ -12,22 +12,22 @@ function voteBallotPage(num, voter) {
 	$("#boxFooter").html("")
 
 	// En tête de la boite
-	$("#intro").html("<p> Allez voter ! </p>")	
+	$("#intro").html("<p> Allez voter&nbsp;! </p>")	
 	
 	// Boite principale
-	$("#boxMain").html("<h3> Électeur : </h3>")	
+	$("#boxMain").html("<h3> Électeu&nbsp;: </h3>")	
 	
 	let votant = $("<div>")
 	votant.append("<input type='text' readonly value='"+voter+"'>")
 	$("#boxMain").append(votant)
 	
 	let code = $("<div>")
-	code.append("<h3> Code du scrutin : </h3>")
+	code.append("<h3> Code du scrutin&nbsp;: </h3>")
 	code.append("<input type='text' readonly value='"+num+"'>")
 	$("#boxMain").append(code)
 	
 	let question = $("<div>")
-	question.append("<h3> Question : </h3>")
+	question.append("<h3> Question&nbsp;: </h3>")
 	let textzone = $("<textarea disabled>")
 	textzone.css("width", "70%")
 	textzone.css("height", "50px")
@@ -36,7 +36,7 @@ function voteBallotPage(num, voter) {
 	$("#boxMain").append(question)
 	
 	let choix = $("<div>")
-	choix.append("<h3> Question : </h3>")
+	choix.append("<h3> Question&nbsp;: </h3>")
 	let choixBoite = $("<div id='options'>")
 	choix.append(choixBoite)
 	$("#boxMain").append(choix)

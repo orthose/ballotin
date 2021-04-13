@@ -25,7 +25,7 @@ $mail->setFrom('ballotin.l3info@gmail.com');
 $mail->addAddress($destination);
 
 $mail->Subject = 'Réinitialisation de votre mot de passe Ballotin';
-$mail->Body = "<p>Voici votre Token de réinitialisation de mot de passe:</p> <strong>$_SESSION[token]</strong>";
+$mail->Body = "<p>Voici votre token de réinitialisation de mot de passe:</p> <strong>$_SESSION[token]</strong>";
 $mail->IsHTML(true);
 
 if($mail->send()) {

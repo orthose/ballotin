@@ -214,7 +214,7 @@ function voteAjax(num, voter) {
         else {
           // On disabled le bouton de vote
           $("#boxMain button").attr("disabled", "")
-          $("#boxFooter").html("<p class='error'> Votre vote n'a pas été pris en compte ! </p>")
+          $("#boxFooter").html("<p class='error'> Votre vote n'a pas été pris en compte&nbsp;! </p>")
         }
         $("#boxFooter").append("<p> Il vous reste "+res[1]+" procuration(s) pour ce scrutin. </p>")
       }).fail(function(e) {

@@ -40,11 +40,11 @@ function createBallotAjax(tag) {
 
   // Il faut au moins un votant 
   if (voters !== "all" && Object.keys(voters).length <= 0) {
-    $("#boxFooter").html("<p class='error'> Vous n'avez pas invité de de votants au scrutin ! </p>")
+    $("#boxFooter").html("<p class='error'> Vous n'avez pas invité de de votants au scrutin&nbsp;! </p>")
   }
   // Il faut au moins 2 choix de réponses
   else if (options.length < 2) {
-    $("#boxFooter").html("<p class='error'> Votre scrutin ne comporte pas assez de choix de vote ! </p>")
+    $("#boxFooter").html("<p class='error'> Votre scrutin ne comporte pas assez de choix de vote&nbsp;! </p>")
   }
   // On crée le scrutin
   else {
@@ -66,7 +66,7 @@ function createBallotAjax(tag) {
       localStorage.setItem("privkey", privkey)
 
       // Afficher le numéro de scrutin
-      $("#boxFooter").html("<p class='good'>Le numéro de votre scrutin est : <b>"+num+"</b></p>")
+      $("#boxFooter").html("<p class='good'>Le numéro de votre scrutin est&nbsp;: <b>"+num+"</b></p>")
 
       // Activation de la barre de navigation
       activateBrowsingBar(num, organiser)

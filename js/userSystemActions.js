@@ -29,7 +29,7 @@ function authenticateAjax() {
 
    	// L'authentification a échouée
    	if (!res) {
-		  $("#boxFooter").html("<p class='error'> Mauvais login ou mot de passe ! <p>")
+		  $("#boxFooter").html("<p class='error'> Mauvais login ou mot de passe&nbsp;! <p>")
    	}
   }).fail(function(e) {
     console.log("Error: authenticateAjax")
@@ -135,7 +135,7 @@ function checkToken() {
 		//console.log(res)
 		// Le token est incorrecte
 		if(!res) {
-			$("#boxFooter").html("<p class='error'> Token incorrect ! </p>")		
+			$("#boxFooter").html("<p class='error'> Token incorrect&nbsp;! </p>")		
 		}
 
 		bool = res		
