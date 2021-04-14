@@ -90,6 +90,7 @@ function manage_button() {
 		activateBrowsingBar(num, voter)
 		// Paramétrage de la bar de navigation
 		$($("aside button")[0]).attr("disabled", "")
+		$($("aside button")[2]).attr("disabled", "")
 		$($("aside button")[3]).attr("disabled", "")
 		//On enlève le bouton de vote
 		$("#boxMain button").remove()

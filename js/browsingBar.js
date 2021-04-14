@@ -57,6 +57,10 @@ function activateBrowsingBar(num, voter) {
   $($("aside button")[3]).on("click", function() {
     voteBallotPage(num, voter)
     $(this).attr("disabled", "")
+    // Dans le cas où l'on part voter depuis la page de
+    // création de scrutin on ne doit plus pouvoir
+    // inviter les participants
+    $($("aside button")[2]).attr("disabled", "")
   })
   // Bouton des résultats de vote et taux de participation
   $($("aside button")[4]).on("click", function() {
