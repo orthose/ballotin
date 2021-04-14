@@ -43,7 +43,7 @@ function bugReportAjax() {
 		de retour ou recharchez la page.
 		</p>`)
 	$("#boxMain button").attr("disabled", "")
-	const bug = $("#boxMain textarea").text()
+	const bug = $("#boxMain textarea").val()
 	$.ajax({
 		method: "GET",
 		url: serverURL + "/ballotin/php/bugReport.php",
