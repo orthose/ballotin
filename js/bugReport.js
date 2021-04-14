@@ -7,6 +7,10 @@
 
 // Page de report de bogue
 function bugReportPage() {
+	// Flèche de retour
+	$("#back").css("visibility", "visible")
+	$("#back").attr("href", "index.php")
+
 	$("#boxFooter").html("")
 	$("aside").empty()
 	$("aside").css("left", "-210px")

@@ -126,7 +126,7 @@ function closeBallotAjax(num) {
     }
     else {
       // Décryptage des résultats
-      arrayDecrypted = array[1].map(decrypt)
+      const arrayDecrypted = array[1].map(decrypt)
       // Enregistrement des résultats
       pushResultsAjax(arrayDecrypted)
     }
@@ -146,8 +146,8 @@ function resultsBallotAjax(num) {
     data: {"numBallot": num}
   }).done(function(res) {
     // Affichage des résultats
-    let rate = (res["entries"] / res["voters"]) * 100.
-    $table = $("<table id='resultTable'>")
+    let rate = (res["entries"] / res["total"]) * 100.
+    const $table = $("<table id='resultTable'>")
     $table.append("<tr> <th> Nombre de participation(s) </th><td> "+res["entries"]+" </td></tr>")
     $table.append("<tr> <th> Pourcentage de participation </th><td> "+rate+"% </td></tr>")
     if (res["results"] === []) {
@@ -157,7 +157,9 @@ function resultsBallotAjax(num) {
     else {
       for (let option in res["results"]) {
         let absolute = res["results"][option]
-        rate = (absolute / res["voters"]) * 100.
+        // ATTENTION: Cardinal sur le nombre de votes effectifs
+        // donc pas sur res["total"]
+        rate = (absolute / res["entries"]) * 100.
         $table.append("<tr> <th> "+option+" </th><td> "+absolute+" vote(s) soit "+rate+"% </td></tr>")
       }
     }

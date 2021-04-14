@@ -21,7 +21,17 @@ $res["results"] = array();
 $res["closed"] = false;
 // Cas de la liste Anonyme
 if ($res["voters"] === "all") {
+	// Tableau des personnes ayant déjà voté
 	$res["registered"] = array();
+}
+// Cas général
+else {
+	// On compte le nombre de votants en comptant
+	// le nombre de procurations
+	$res["total"] = 0;
+	foreach ($res["voters"] as $voter => $power) {
+		$res["total"] += $power;
+	}
 }
 
 // Création (clé privée, clé publique)

@@ -14,6 +14,9 @@ if (isset($res["results"])) {
 if (isset($res["registered"])) {
 	unset($res["registered"]);
 }
+if (isset($res["total"])) {
+	unset($res["total"]);
+}
 echo json_encode($res);
 
 ?>

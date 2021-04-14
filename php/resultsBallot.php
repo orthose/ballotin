@@ -8,7 +8,7 @@ $file = path.$_REQUEST["numBallot"].format;
 $data = json_decode(file_get_contents($file), true);
 
 // Format de l'objet renvoyé à AJAX
-$res = array("entries" => 0, "voters" => 0, "results" => array());
+$res = array("entries" => 0, "total" => 0, "results" => array());
 
 // Valeur absolue du nombre de votes reçus
 $res["entries"] = count($data["results"]);
@@ -16,12 +16,12 @@ $res["entries"] = count($data["results"]);
 // Cas de la liste Anonyme où tout le monde peut voter
 if ($data["voters"] === "all") {
 	// On récupère le nombre d'utilisateurs du système
-	$res["voters"] = shell_exec("wc -l ../secret/passwd.txt | cut -f1 -d' '");
+	$res["total"] = shell_exec("wc -l ../secret/passwd.txt | cut -f1 -d' '");
 }
 // Cas général
 else {
-	// Nombre de votants
-	$res["voters"] = count($data["voters"]);
+	// Nombre de votants au total
+	$res["total"] = $data["total"];
 }
 
 // Remplissage éventuel des résultats
