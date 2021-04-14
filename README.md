@@ -11,6 +11,6 @@ Projet de Programmation Web L3 Informatique Université Paris-Saclay
 `chmod 777 secret/passwd.txt`
 
 * Création du fichier de report de bogue
-`echo "[]" > secret/bug-report.txt`
+`echo "[]" > secret/bug-report.json`
 * PHP doit avoir les droits en écriture
-`chmod 777 secret/bug-report.txt`
+`chmod 777 secret/bug-report.json`
