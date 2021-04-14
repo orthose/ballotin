@@ -17,7 +17,7 @@ function searchBallotAjax(mode) {
   else {
     $.ajax({
       method: "GET",
-      url: "/ballotin/php/searchBallot.php",
+      url: serverURL + "/ballotin/php/searchBallot.php",
       dataType: "json",
       data: {
         "organiser": organiser,
@@ -45,7 +45,7 @@ function checkBallotAjax(num) {
   else {
     $.ajax({
       method: "GET",
-      url: "/ballotin/php/checkBallot.php",
+      url: serverURL + "/ballotin/php/checkBallot.php",
       // Nécessaire car modification de variable
       // (Bogue horrible à trouver)
       async: false,
@@ -69,7 +69,7 @@ function checkBallotAjax(num) {
 function getBallotAjax(num) {
   $.ajax({
     method: "GET",
-    url: "/ballotin/php/getBallot.php",
+    url: serverURL + "/ballotin/php/getBallot.php",
     dataType: "json",
     data: {"numBallot": num}
   }).done(function(ballot) {
@@ -104,7 +104,7 @@ function closeBallotAjax(num) {
   function pushResultsAjax(arrayDecrypted) {
     $.ajax({
       method: "GET",
-      url: "/ballotin/php/pushResultsBallot.php",
+      url: serverURL + "/ballotin/php/pushResultsBallot.php",
       data: {
         "numBallot": num,
         "results": arrayDecrypted
@@ -117,7 +117,7 @@ function closeBallotAjax(num) {
 
   $.ajax({
     method: "GET",
-    url: "/ballotin/php/closeBallot.php",
+    url: serverURL + "/ballotin/php/closeBallot.php",
     dataType: "json",
     data: {"numBallot": num}
   }).done(function(array) {
@@ -141,7 +141,7 @@ function closeBallotAjax(num) {
 function resultsBallotAjax(num) {
   $.ajax({
     method: "GET",
-    url: "/ballotin/php/resultsBallot.php",
+    url: serverURL + "/ballotin/php/resultsBallot.php",
     dataType: "json",
     data: {"numBallot": num}
   }).done(function(res) {
@@ -174,7 +174,7 @@ function resultsBallotAjax(num) {
 function removeBallotAjax(num) {
   $.ajax({
     method: "GET",
-    url: "/ballotin/php/removeBallot.php",
+    url: serverURL + "/ballotin/php/removeBallot.php",
     data: {"numBallot": num}
   }).fail(function(e) {
     console.log("Error: removeBallotAjax")
@@ -198,7 +198,7 @@ function voteAjax(num, voter) {
 	if (option !== undefined) {
     $.ajax({
       method: "GET",
-      url: "/ballotin/php/vote.php",
+      url: serverURL + "/ballotin/php/vote.php",
       dataType: "json",
       data: {
         "numBallot": num,

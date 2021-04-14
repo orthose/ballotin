@@ -20,9 +20,10 @@
 	}
 ?>
 
-// On sauvegarde l'id de session dans une variable globale
 <script type="text/javascript">
-    	var sessionID ='<?= session_id();?>'
+	// On sauvegarde l'id de session dans une variable globale
+  var sessionID ='<?= session_id();?>'
+  let serverURL = ""
 </script>
 
 <!doctype html>

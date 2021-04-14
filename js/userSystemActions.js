@@ -15,7 +15,7 @@ function authenticateAjax() {
 	
 	$.ajax({
     method: "GET",
-    url: "/ballotin/php/authenticate.php",
+    url: serverURL + "/ballotin/php/authenticate.php",
     // Nécessaire car modification de variable
     // (Bogue horrible à trouver)
     async: false,
@@ -46,7 +46,7 @@ function createUserAjax(override) {
 
 	$.ajax({
     method: "GET",
-    url: "/ballotin/php/createUser.php",
+    url: serverURL + "/ballotin/php/createUser.php",
     dataType: "json",
     data: {
     	"login": login,
@@ -95,7 +95,7 @@ function sendMail() {
 
 		$.ajax({
 			method: "GET",
-			url: "/ballotin/php/mail.php",
+			url: serverURL + "/ballotin/php/mail.php",
 			dataType: "json",
 			data: {
 				"mail": login,
@@ -123,7 +123,7 @@ function checkToken() {
 
 	$.ajax({
 		method: "GET",
-		url: "/ballotin/php/checkToken.php",
+		url: serverURL + "/ballotin/php/checkToken.php",
 		async: false,
 		dataType: "json",
 		data: {
@@ -162,7 +162,7 @@ function inviteAll(code) {
 	// On envoie les mails
 	$.ajax({
 		method: "GET",
-		url: "/ballotin/php/inviteAll.php",
+		url: serverURL + "/ballotin/php/inviteAll.php",
 		dataType: "json",
 		data: {"voters": voters, "code": code}
 	}).done(function(res) {

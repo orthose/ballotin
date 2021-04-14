@@ -51,7 +51,7 @@ function createBallotAjax(tag) {
   	const organiser = $("#organiser").val()
 	 	$.ajax({
       method: "GET",
-      url: "/ballotin/php/createBallot.php",
+      url: serverURL + "/ballotin/php/createBallot.php",
       dataType: "json",
       data: {
     	 "organiser": organiser,
@@ -109,7 +109,7 @@ function selectListVotersAjax(tag) {
   else {
     $.ajax({
       method: "GET",
-      url: "/ballotin/php/selectListVoters.php",
+      url: serverURL + "/ballotin/php/selectListVoters.php",
       dataType: "json",
       data: {"listVoters": listVoters}
     }).done(function(array) {

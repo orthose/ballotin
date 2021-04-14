@@ -46,7 +46,7 @@ function bugReportAjax() {
 	const bug = $("#boxMain textarea").text()
 	$.ajax({
 		method: "GET",
-		url: "/ballotin/php/bugReport.php",
+		url: serverURL + "/ballotin/php/bugReport.php",
 		data: {"bugtxt": bug}
 	}).fail(function(e) {
 		console.log("Error: bugReportAjax")
