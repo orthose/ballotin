@@ -145,25 +145,30 @@ function resultsBallotAjax(num) {
     dataType: "json",
     data: {"numBallot": num}
   }).done(function(res) {
-    // Affichage des résultats
-    let rate = (res["entries"] / res["total"]) * 100.
-    const $table = $("<table id='resultTable'>")
-    $table.append("<tr> <th> Nombre de participation(s) </th><td> "+res["entries"]+" </td></tr>")
-    $table.append("<tr> <th> Pourcentage de participation </th><td> "+rate+"% </td></tr>")
-    if (res["results"] === []) {
-      $table.append("<tr><td> Le scrutin n'est pas encore clos. </td></tr>")
+    if (res["removed"]) {
+      $("#boxFooter").html("<p class='error'> Le scrutin a été détruit par l'organisateur. </p>")
     }
-    // Affichage de tous les résultats pour chaque option
     else {
-      for (let option in res["results"]) {
-        let absolute = res["results"][option]
-        // ATTENTION: Cardinal sur le nombre de votes effectifs
-        // donc pas sur res["total"]
-        rate = (absolute / res["entries"]) * 100.
-        $table.append("<tr> <th> "+option+" </th><td> "+absolute+" vote(s) soit "+rate+"% </td></tr>")
+      // Affichage des résultats
+      let rate = (res["entries"] / res["total"]) * 100.
+      const $table = $("<table id='resultTable'>")
+      $table.append("<tr> <th> Nombre de participation(s) </th><td> "+res["entries"]+" </td></tr>")
+      $table.append("<tr> <th> Pourcentage de participation </th><td> "+rate+"% </td></tr>")
+      if (res["results"] === []) {
+        $table.append("<tr><td> Le scrutin n'est pas encore clos. </td></tr>")
       }
+      // Affichage de tous les résultats pour chaque option
+      else {
+        for (let option in res["results"]) {
+          let absolute = res["results"][option]
+          // ATTENTION: Cardinal sur le nombre de votes effectifs
+          // donc pas sur res["total"]
+          rate = (absolute / res["entries"]) * 100.
+          $table.append("<tr> <th> "+option+" </th><td> "+absolute+" vote(s) soit "+rate+"% </td></tr>")
+        }
+      }
+      $("#boxFooter").html($table)
     }
-    $("#boxFooter").html($table)
   }).fail(function(e) {
     console.log("Error: resultsBallotAjax")
     console.log(e)
