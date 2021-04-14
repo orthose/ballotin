@@ -72,9 +72,10 @@
 			
 			<main id='boxMain'>				
 				<div id='buttons'>
-					<button onClick='authenticate_button(); vote_button()'> Voter pour un scrutin </button>
-					<button onClick='authenticate_button(); create_button()'> Créer un scrutin </button>
-					<button onClick='authenticate_button(); manage_button()'> Manager un scrutin </button>
+					<button onClick='authenticate_button(); vote_button()'> Voter pour un scrutin </button><br>
+					<button onClick='authenticate_button(); create_button()'> Créer un scrutin </button><br>
+					<button onClick='authenticate_button(); manage_button()'> Manager un scrutin </button><br><br>
+					<a href="Projet_web_ballotin.pdf" target="_blank"> Manuel d'utilisation </a>
 				</div>
 			</main>
 			
