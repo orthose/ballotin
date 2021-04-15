@@ -129,8 +129,11 @@ function closeBallotAjax(num) {
       const arrayDecrypted = array[1].map(function(txt) {
       	return decrypt(num, txt)
       })
+      console.log(arrayDecrypted)
       // Enregistrement des résultats
       pushResultsAjax(arrayDecrypted)
+      // Suppression de la clé privée
+      localStorage.removeItem("privkey" + num)
     }
   }).fail(function(e) {
     console.log("Error: closeBallotAjax")
