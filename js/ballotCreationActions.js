@@ -63,7 +63,7 @@ function createBallotAjax(tag) {
       const num = res["numBallot"]
       const privkey = res["privkey"]
       // Enregistrement de la clé privée en local
-      localStorage.setItem("privkey", privkey)
+      localStorage.setItem("privkey" + num, privkey)
 
       // Afficher le numéro de scrutin
       $("#boxFooter").html("<p class='good'>Le numéro de votre scrutin est&nbsp;: <b>"+num+"</b></p>")

@@ -126,7 +126,9 @@ function closeBallotAjax(num) {
     }
     else {
       // Décryptage des résultats
-      const arrayDecrypted = array[1].map(decrypt)
+      const arrayDecrypted = array[1].map(function(txt) {
+      	return decrypt(num, txt)
+      })
       // Enregistrement des résultats
       pushResultsAjax(arrayDecrypted)
     }
